@@ -45,6 +45,11 @@ class User extends Authenticatable
         'is_banned' => 'boolean',
     ];
 
+    public function archives()
+    {
+        return $this->belongsToMany('App\Models\Story', 'archives', 'story_id', 'user_id');
+    }
+
     public function comments()
     {
         return $this->hasMany('App\Models\Comment', 'user_id');
@@ -72,7 +77,7 @@ class User extends Authenticatable
 
     public function profile()
     {
-        return $this->hasOne('App\Models\Profile', 'user_id');
+        return $this->hasOne('App\Models\UserProfile', 'user_id');
     }
 
     public function profilePosts()
@@ -90,9 +95,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Review', 'user_id');
     }
 
-    public function archives()
+    public function stories()
     {
-        return $this->belongsToMany('App\Models\Story', 'archives', 'story_id', 'user_id');
+        return $this->hasMany('App\Models\Story', 'user_id');
     }
 
     public function votings()
