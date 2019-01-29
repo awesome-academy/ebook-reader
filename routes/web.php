@@ -11,6 +11,23 @@
 |
 */
 
+// Home
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('front.home');
+})->name('home');
+// Category
+Route::get('/stories/{slug}', function () {
+    return view('front.stories');
+})->name('meta');
+// Story details
+Route::get('/story/{id}', function () {
+    if (Request::ajax()) {
+        return view('front.story_preview');
+    } else {
+        return view('front.story');
+    }
+})->name('story');
+// Story part
+Route::get('/{id}', function() {
+    return view('front.part');
+})->name('part');
