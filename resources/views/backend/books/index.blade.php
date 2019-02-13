@@ -4,76 +4,42 @@
 <div class="card mb-3">
     <div class="card-header">
         <i class="fas fa-user"></i>
-        Book Table</div>
+        {{ trans('tran.book') }}</div>
     <div class="card-body">
-        <div>
-            <a class="btn btn-success" href="#">Add New Book</a>
-        </div>
-        <hr />
+        <hr/>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Author</th>
-                        <th>Title</th>
-                        <th>Mature</th>
-                        <th>Status</th>
-                        <th>Views</th>
-                        <th>Completed</th>
-                        <th>Recommended</th>
-                        <th>Action</th>
+                        <th>{{ trans('tran.id') }}</th>
+                        <th>{{ trans('tran.author') }}</th>
+                        <th>{{ trans('tran.title') }}</th>
+                        <th>{{ trans('tran.mature') }}</th>
+                        <th>{{ trans('tran.status') }}</th>
+                        <th>{{ trans('tran.views') }}</th>
+                        <th>{{ trans('tran.completed') }}</th>
+                        <th>{{ trans('tran.recommended') }}</th>
+                        <th>{{ trans('tran.action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
+                @foreach ($books as $book)
                     <tr>
-                        <td>1</td>
-                        <td>Nguyễn Chu Nam Phương</td>
-                        <td><a class="btn btn-light" data-toggle="tooltip" data-placement="right" title="click here to show book detail"
-                                href="{{ route('bookdetail') }}">Numagician</a></td>
-                        <td>Mature</td>
-                        <td>Status</td>
-                        <td>Views</td>
-                        <td>Completed</td>
-                        <td>Recommended</td>
-                        <td class="text-center"><a class="btn btn-secondary" href="{{ route('bookinfo') }}"><i class="fas fa-info-circle"></i>
-                                Information</a>
-                            <a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i>Delete</a></td>
+                        <td>{!! $book->id !!}</td>
+                        <td>{!! $book->user->full_name !!}</td>
+                        <td><a class="btn btn-light" data-toggle="tooltip" data-placement="right" title="{{ trans('tran.tip_detail') }}" href="{{ route('bookdetail') }}">{!! $book->title !!}</a></td>
+                        <td>{!! ($book->is_mature > 0) ? 'no' : 'yes' !!}</td>
+                        <td>{!! ($book->status > 0) ? 'no' : 'yes' !!}</td>
+                        <td>{!! $book->views !!}</td>
+                        <td>{!! ($book->is_completed > 0) ? 'no' : 'yes' !!}</td>
+                        <td>{!! ($book->is_recommended > 0) ? 'no' : 'yes' !!}</td>
+                        <td class="text-center"><a class="btn btn-secondary" href="{{ route('bookinfo', ['id' => $book->id]) }}"><i class="fas fa-info-circle"></i> {{ trans('tran.information') }}</a>
+                        <a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i>{{ trans('tran.delete') }}</a></td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Nguyễn Chu Nam Phương</td>
-                        <td><a class="btn btn-light" data-toggle="tooltip" data-placement="right" title="click here to show book detail"
-                                href="#">Numagician</a></td>
-                        <td>Mature</td>
-                        <td>Status</td>
-                        <td>Views</td>
-                        <td>Completed</td>
-                        <td>Recommended</td>
-                        <td class="text-center"><a class="btn btn-secondary" href="{{ route('bookinfo') }}"><i class="fas fa-info-circle"></i>
-                                Information</a>
-                            <a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i>Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Nguyễn Chu Nam Phương</td>
-                        <td><a class="btn btn-light" data-toggle="tooltip" data-placement="right" title="click here to show book detail"
-                                href="#">Numagician</a></td>
-                        <td>Mature</td>
-                        <td>Status</td>
-                        <td>Views</td>
-                        <td>Completed</td>
-                        <td>Recommended</td>
-                        <td class="text-center"><a class="btn btn-secondary" href="{{ route('bookinfo') }}"><i class="fas fa-info-circle"></i>
-                                Information</a>
-                            <a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i>Delete</a></td>
-                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
-</div>
-<!-- /.container-fluid -->
 @endsection

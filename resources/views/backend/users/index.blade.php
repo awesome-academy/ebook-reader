@@ -4,10 +4,10 @@
 <div class="card mb-3">
     <div class="card-header">
         <i class="fas fa-user"></i>
-        User Table</div>
+        {{ trans('tran.user') }}</div>
     <div class="card-body">
         <div>
-            <a class="btn btn-success" href="{{ route('adduser') }}">Add New User</a>
+            <a class="btn btn-success" href="{{ route('adduser') }}">{{ trans('tran.add_user') }}</a>
         </div>
         <hr/>
         @if (session('status'))
@@ -16,37 +16,36 @@
         </div>
         @endif
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>LoginName</th>
+                        <th>{{ trans('tran.id') }}</th>
+                        <th>{{ trans('tran.name') }}</th>
+                        <th>{{ trans('tran.loginname') }}</th>
                         <th>Email</th>
-                        <th>Role</th>
-                        <th>Ban</th>
-                        <th>Action</th>
+                        <th>{{ trans('tran.role') }}</th>
+                        <th>{{ trans('tran.ban') }}</th>
+                        <th>{{ trans('tran.action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
+                @foreach ($users as $user)
                     <tr>
-                        <td>1</td>
-                        <td><a href="{{ route('updateuser') }}">user name</a></td>
-                        <td>login name</td>
-                        <td>email@gmail.com</td>
-                        <td>admin</td>
-                        <td>no</td>
-                        <td>                         
-                            {!! Form::open(['method' => 'POST']) !!}                                                                                                
-                                {!! Form::button('Delete', ['class' => 'btn btn-danger']) !!}                              
-                            {!! Form::close() !!}
+                        <td>{!! $user->id !!}</td>
+                        <td><a href="{{ route('updateuser', ['id' => $user->id]) }}">{!! $user->full_name !!}</a></td>
+                        <td>{!! $user->login_name !!}</td>
+                        <td>{!! $user->email !!}</td>
+                        <td>{!! ($user->role > 0) ? 'admin' : 'normal' !!}</td>
+                        <td>{!! ($user->is_banned > 0) ? 'yes' : 'no' !!}</td>
+                        <td>
+                            <a onclick="return confirm('Are you sure delete this user?')"
+                            href="{!! URL::route('deleteuser', $user->id) !!}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> {{ trans('tran.delete') }}</a>
                         </td>
                     </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-</div>
 </div>
 @endsection

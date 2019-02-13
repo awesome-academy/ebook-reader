@@ -3,89 +3,87 @@
 @section('content')
 <div class="card-body">
     <div>
-        <h1 class="text-success">Book Information</h1>
+        <h1 class="text-success">{{ trans('tran.book_info') }}</h1>
     </div>
     <div>
-        {!! Form::open(['method' => "POST", 'route' => ['adduser']]) !!}
+        {!! Form::open(['method' => 'POST', 'route' => ['adduser']]) !!}
         <div class="form-group row">
-            {!! Form::label('bookid', 'ID', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
+            {!! Form::label('bookid', trans('tran.id'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-1">
-                {!! Form::text('bookid', '', ['class' => 'form-control', 'id' => 'bookid']) !!}
+                {!! Form::text('bookid', $book->id, ['class' => 'form-control', 'id' => 'bookid']) !!}
             </div>
-            {!! Form::label('report', 'Report', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
+            {!! Form::label('report', trans('tran.report'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-1">
                 {!! Form::text('report', '', ['class' => 'form-control', 'id' => 'report']) !!}
             </div>
-            {!! Form::label('chapter', 'Chapter', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
+            {!! Form::label('chapter', trans('tran.chapter'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-1">
                 {!! Form::text('chapter', '', ['class' => 'form-control', 'id' => 'chapter']) !!}
             </div>
         </div>
 
         <div class="form-group row">
-            {!! Form::label('image', 'Image', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
+            {!! Form::label('image', trans('tran.image'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-2">
-                <img src="http://thuthuatphanmem.vn/uploads/2018/09/11/hinh-anh-dep-1_044126531.jpg" alt="" class="img-thumbnail">
+                <img src="" alt="Image" class="img-thumbnail">
             </div>
         </div>
 
         <div class="form-group row">
-            {!! Form::label('author', 'Author', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
+            {!! Form::label('author', trans('tran.author'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-3">
-                {!! Form::text('author', '', ['class' => 'form-control', 'id' => 'author']) !!}
+                {!! Form::text('author', $book->user->full_name, ['class' => 'form-control', 'id' => 'author']) !!}
             </div>
         </div>
 
         <div class="form-group row">
-            {!! Form::label('title', 'Title', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
+            {!! Form::label('title', trans('tran.title'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-5">
-                {!! Form::text('title', '', ['class' => 'form-control', 'id' => 'title']) !!}
+                {!! Form::text('title', $book->title, ['class' => 'form-control', 'id' => 'title']) !!}
             </div>
         </div>
 
         <div class="form-group row">
             {!! Form::label('slug', 'Slug', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-5">
-                {!! Form::text('Slug', '', ['class' => 'form-control', 'id' => 'slug']) !!}
+                {!! Form::text('Slug', $book->slug, ['class' => 'form-control', 'id' => 'slug']) !!}
             </div>
         </div>
 
         <div class="form-group row">
-            {!! Form::label('summary', 'Summary', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
+            {!! Form::label('summary', trans('tran.summary'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-6">
-                {!! Form::textarea('summary', '', ['class' => 'form-control', 'id' => 'summary']) !!}
+                {!! Form::textarea('summary', $book->summary, ['class' => 'form-control', 'id' => 'summary']) !!}
             </div>
         </div>
         <div class="form-group row">
-            {!! Form::label('view', 'View', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
+            {!! Form::label('view', trans('tran.views'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-2">
-                {!! Form::text('view', '', ['class' => 'form-control', 'id' => 'view']) !!}
+                {!! Form::text('view', $book->views, ['class' => 'form-control', 'id' => 'view']) !!}
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-md-1"></div>
             <div class="col-md-2 custom-control custom-switch">
-                {!! Form::checkbox('mature', null, null, ['id' => 'mature', 'class' => 'custom-control-input']) !!}
-                {!! Form::label('mature', 'Mature', ['class' => 'custom-control-label']) !!}
+                {!! Form::checkbox('mature', null, ($book->is_mature > 0) ? null : 'checked', ['id' => 'mature', 'class' => 'custom-control-input']) !!}
+                {!! Form::label('mature', trans('tran.mature'), ['class' => 'custom-control-label']) !!}
             </div>
             <div class="col-md-2 custom-control custom-switch">
-                {!! Form::checkbox('status', null, null, ['id' => 'status', 'class' => 'custom-control-input']) !!}
-                {!! Form::label('status', 'Status', ['class' => 'custom-control-label']) !!}
+                {!! Form::checkbox('status', null, ($book->status > 0) ? null : 'checked', ['id' => 'status', 'class' => 'custom-control-input']) !!}
+                {!! Form::label('status', trans('tran.status'), ['class' => 'custom-control-label']) !!}
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-md-1"></div>
             <div class="col-md-2 custom-control custom-switch">
-                {!! Form::checkbox('recommended', null, null, ['id' => 'recommended', 'class' =>
-                'custom-control-input']) !!}
-                {!! Form::label('recommended', 'Recommended', ['class' => 'custom-control-label']) !!}
+                {!! Form::checkbox('recommended', null, ($book->is_recommended > 0) ? null : 'checked', ['id' => 'recommended', 'class' => 'custom-control-input']) !!}
+                {!! Form::label('recommended', trans('tran.recommended'), ['class' => 'custom-control-label']) !!}
             </div>
             <div class="col-md-2 custom-control custom-switch">
-                {!! Form::checkbox('completed', null, null, ['id' => 'completed', 'class' => 'custom-control-input'])
-                !!}
-                {!! Form::label('completed', 'Completed', ['class' => 'custom-control-label']) !!}
+                {!! Form::checkbox('completed', null, ($book->is_completed > 0) ? null : 'checked', ['id' => 'completed', 'class' => 'custom-control-input']) !!}
+                {!! Form::label('completed', trans('tran.completed'), ['class' => 'custom-control-label']) !!}
             </div>
         </div>
         <div class="form-group row tag-form">
@@ -95,31 +93,31 @@
             </div>
         </div>
         <div class="form-group row">
-            {!! Form::label('category', 'Category', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
+            {!! Form::label('category', trans('tran.category'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-3">
                 {!! Form::text('category', '', ['class' => 'form-control', 'id' => 'category']) !!}
             </div>
         </div>
 
         <div class="form-group row">
-            {!! Form::label('create-at', 'Create At', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
+            {!! Form::label('create-at', trans('tran.create_at'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-2">
-                {!! Form::date('create-at', '', ['class' => 'form-control', 'id' => 'create-at']) !!}
+                {!! Form::date('create-at', $createAt, ['class' => 'form-control', 'id' => 'create-at']) !!}
             </div>
         </div>
         <div class="form-group row">
-            {!! Form::label('update-at', 'Update At', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
+            {!! Form::label('update-at', trans('tran.update_at'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-2">
-                {!! Form::date('update-at', '', ['class' => 'form-control', 'id' => 'update-at']) !!}
+                {!! Form::date('update-at', $updateAt, ['class' => 'form-control', 'id' => 'update-at']) !!}
             </div>
         </div>
         <div class="for-group row mb-0">
             <div class="col offset-md-1">
-                {!! Form::button('Save', ['class' => 'btn btn-primary' ]) !!}
-                {!! Form::button('Back', ['class' => 'btn btn-primary' ]) !!}
+                {!! Form::button(trans('tran.save'), ['class' => 'btn btn-primary' ]) !!}
+                {!! Form::button(trans('tran.back'), ['class' => 'btn btn-primary' ]) !!}
             </div>
         </div>
-        {!! Form::close() !!}
+    {!! Form::close() !!}
     </div>
 </div>
 @endsection

@@ -14,4 +14,9 @@ class Meta extends Model
     {
         return $this->belongsToMany('App\Models\Story', 'meta_story', 'story_id', 'meta_id');
     }
+
+    public function setSlugAttribute($slug)
+    {
+        $this->attributes['slug'] = str_slug($slug, '-');
+    }
 }
