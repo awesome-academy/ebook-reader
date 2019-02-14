@@ -12,6 +12,6 @@ class Meta extends Model
 
     public function stories()
     {
-        return $this->belongsToMany('App\Models\Story', 'meta_story', 'story_id', 'meta_id');
+        return $this->belongsToMany('App\Models\Story', 'meta_story', 'meta_id', 'story_id');
     }
 }
