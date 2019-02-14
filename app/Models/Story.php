@@ -26,7 +26,7 @@ class Story extends Model
 
     public function categories()
     {
-        return $this->belongsToMany('App\Models\Meta', 'meta_story', 'meta_id', 'story_id')
+        return $this->belongsToMany('App\Models\Meta', 'meta_story', 'story_id', 'meta_id')
             ->where('type', 'category');
     }
 
@@ -52,7 +52,7 @@ class Story extends Model
 
     public function tags()
     {
-        return $this->belongsToMany('App\Models\Meta', 'meta_story', 'meta_id', 'story_id')
+        return $this->belongsToMany('App\Models\Meta', 'meta_story', 'story_id', 'meta_id')
             ->where('type', 'tag');
     }
 

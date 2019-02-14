@@ -23,7 +23,9 @@ class UsersTableSeeder extends Seeder
         ]);
         factory(App\Models\User::class, 50)->create()->each(function ($user) {
             $user->profile()->save(factory(App\Models\UserProfile::class)->make());
-            $user->stories()->saveMany(factory(App\Models\Story::class, rand(1, 4))->make());
+            factory(App\Models\Story::class, rand(1, 4))->create([
+                'user_id' => $user->id,
+            ]);
         });
     }
 }
