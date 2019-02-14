@@ -17,6 +17,7 @@ mix.copyDirectory('node_modules/jquery/dist', 'public/vendor/jquery')
     .copyDirectory('node_modules/font-awesome', 'public/vendor/font-awesome')
     .copy('resources/assets/frontend/js/main.js', 'public/js/main.js')
     .copy('resources/assets/frontend/css/styles.css', 'public/css/styles.css')
+    .copy('resources/assets/frontend/css/simple.css', 'public/css/simple.css')
     // TODO: dev
     .copy('node_modules/holderjs', 'public/vendor/holderjs');
 

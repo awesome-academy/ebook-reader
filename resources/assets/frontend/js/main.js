@@ -16,7 +16,7 @@ $(document).ready(function () {
                 nav: true
             },
             1366: {
-                items: 3.5,
+                items: 2.5,
                 nav: true
             }
         }
