@@ -47,7 +47,7 @@
                 {!! Form::close() !!}
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">@lang('app.log_in')</a></li>
+                        <a class="nav-link" href="{{ route('admin') }}">@lang('app.log_in')</a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">@lang('app.sign_up')</a></li>
                 </ul>

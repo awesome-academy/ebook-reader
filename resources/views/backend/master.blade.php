@@ -14,19 +14,16 @@
     <link href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
-    <link href="{{ asset('bower_components/startbootstrap-sb-admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
-        type="text/css">
+    <link href="{{ asset('bower_components/startbootstrap-sb-admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Page level plugin CSS-->
-    <link href="{{ asset('bower_components/startbootstrap-sb-admin/vendor/datatables/dataTables.bootstrap4.css') }}"
-        rel="stylesheet">
+    <link href="{{ asset('bower_components/startbootstrap-sb-admin/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('bower_components/startbootstrap-sb-admin/css/sb-admin.css') }}" rel="stylesheet">
 
     <!-- CKEditor -->
     <script src="{{ asset('bower_components/ckeditor/ckeditor.js') }}"></script>
-
 </head>
 
 <body id="page-top">
@@ -42,7 +39,7 @@
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for..." aria-label="Search"
+                <input type="text" class="form-control" aria-label="Search"
                     aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button">
@@ -54,6 +51,16 @@
 
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto ml-md-0">
+            <li class="nav-item dropdown no-arrow mx-2">
+                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-language"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+                    <a class="dropdown-item" href="{!! route('change-language', ['en']) !!}">{{ trans('tran.english') }}</a>
+                    <a class="dropdown-item" href="{!! route('change-language', ['vi']) !!}">{{ trans('tran.vietnamese') }}</a>
+                </div>
+            </li>
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -61,10 +68,10 @@
                     <i class="fas fa-bell fa-fw"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#"></a>
+                    <a class="dropdown-item" href="#"></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#"></a>
                 </div>
             </li>
             <li class="nav-item dropdown no-arrow">
@@ -74,10 +81,10 @@
                     <i class="fas fa-user-circle fa-fw"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href="#">Activity Log</a>
+                    <a class="dropdown-item" href="#"></a>
+                    <a class="dropdown-item" href="#"></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">{{ trans('tran.logout') }}</a>
                 </div>
             </li>
         </ul>
@@ -91,57 +98,57 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                    <span>{{ trans('tran.dashboard') }}</span>
                 </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" href="{{ route('user') }}" id="pagesDropdown" role="button">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>User</span>
+                    <span>{{ trans('tran.user') }}</span>
                 </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" href="{{ route('book') }}" id="pagesDropdown" role="button">
                     <i class="fas fa-fw fa-book"></i>
-                    <span>Book</span>
+                    <span>{{ trans('tran.book')}}</span>
                 </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" id="pagesDropdown" role="button">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Config</span>
+                    <span>{{ trans('tran.config') }}</span>
                 </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="pagesDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-comments"></i>
-                    <span>Comment</span>
+                    <span>{{ trans('tran.comment') }}</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <a class="dropdown-item" href="#">Book Comment</a>
-                    <a class="dropdown-item" href="#">Review Comment</a>
+                    <a class="dropdown-item" href="#">{{ trans('tran.book_comment') }}</a>
+                    <a class="dropdown-item" href="#">{{ trans('tran.review_comment') }}</a>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-flag"></i>
-                    <span>Report</span></a>
+                    <span>{{ trans('tran.report') }}</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('categories') }}">
                     <i class="fab fa-medium-m"></i>
-                    <span>Meta</span></a>
+                    <span>{{ trans('tran.meta') }}</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('review') }}">
                     <i class="fas fa-tv"></i>
-                    <span>Review</span></a>
+                    <span>{{ trans('tran.review') }}</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-th"></i>
-                    <span>Banner</span></a>
+                    <span>{{ trans('tran.banner') }}</span></a>
             </li>
         </ul>
 
@@ -152,9 +159,9 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin') }}">Dashboard</a>
+                        <a href="{{ route('admin') }}">{{ trans('tran.dashboard') }}</a>
                     </li>
-                    <li class="breadcrumb-item active">Blank Page</li>
+                    <li class="breadcrumb-item active">{{ trans('tran.dashboard') }}</li>
                 </ol>
 
                 <!-- Page Content -->
@@ -164,13 +171,13 @@
             <!-- /.container-fluid -->
 
             <!-- Sticky Footer -->
-            <footer class="sticky-footer">
+            <!-- <footer class="sticky-footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright © Your Website 2018</span>
                     </div>
                 </div>
-            </footer>
+            </footer> -->
 
         </div>
         <!-- /.content-wrapper -->
@@ -189,20 +196,20 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ trans('tran.ready_leave') }}</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">{{ trans('tran.logout_mes') }}</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="#">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">{{ trans('tran.cancel') }}</button>
+                    <a class="btn btn-primary" href="{{ route('home') }}">{{ trans('tran.logout') }}</a>
                 </div>
             </div>
         </div>
     </div>
-
+</body>
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('bower_components/startbootstrap-sb-admin/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
@@ -219,9 +226,7 @@
 
     <!-- Demo scripts for this page-->
     <script src="{{ asset('bower_components/startbootstrap-sb-admin/js/demo/datatables-demo.js') }}"></script>
-
+    
     <script src="{{ asset('js/custom.js') }}"></script>
-
 </body>
-
 </html>

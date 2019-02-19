@@ -4,22 +4,23 @@
 <div class="card mb-3">
     <div class="card-header">
         <i class="fas fa-book"></i>
-        Chapter Table</div>
+        {{ trans('tran.chapter') }}</div>
     <div class="card-body">
+        <hr />
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Book</th>
-                        <th>Title</th>
+                        <th>{{ trans('tran.id') }}</th>
+                        <th>{{ trans('tran.book') }}</th>
+                        <th>{{ trans('tran.title') }}</th>
                         <th>Slug</th>
-                        <th>Status</th>
-                        <th>Completed</th>
-                        <th>Vote</th>
-                        <th>Create At</th>
-                        <th>Update At</th>
-                        <th>Action</th>
+                        <th>{{ trans('tran.status') }}</th>
+                        <th>{{ trans('tran.completed') }}</th>
+                        <th>{{ trans('tran.vote') }}</th>
+                        <th>{{ trans('tran.create_at') }}</th>
+                        <th>{{ trans('tran.update_at') }}</th>
+                        <th>{{ trans('tran.action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +35,7 @@
                         <td>Vote</td>
                         <td>01/24/2019</td>
                         <td>01/24/2019</td>
-                        <td><a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i>Delete</a></td>
+                        <td><a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i>{{ trans('tran.delete') }}</a></td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -47,13 +48,11 @@
                         <td>Vote</td>
                         <td>Create At</td>
                         <td>Update At</td>
-                        <td><a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i>Delete</a></td>
+                        <td><a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i>{{ trans('tran.delete') }}</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-</div>
 </div>
 @endsection
