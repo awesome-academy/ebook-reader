@@ -12,26 +12,22 @@
 */
 
 // Home
-Route::get('/', function () {
-    return view('front.home');
-})->name('home');
+Route::get('/', 'HomeControler@index')->name('home');
 
 // Category
-Route::get('/stories/{slug}', function () {
-    return view('front.stories');
-})->name('meta');
+Route::get('/stories/{slug}', 'HomeController@meta')->name('meta');
 // Story details
-Route::get('/story/{id}', function () {
-    if (Request::ajax()) {
-        return view('front.story_preview');
-    } else {
-        return view('front.story');
-    }
-})->name('story');
+Route::get('/story/{id}', 'HomeController@story')->name('story');
 // Story part
-Route::get('/id', function() {
-    return view('front.part');
-})->name('part');
+Route::get('/{id}', 'HomeController@part')->name('part');
+// Login
+Route::get('/login', 'HomeController@login')->name('login');
+// Register
+Route::get('/register', 'HomeController@register')->name('register');
+// profile
+Route::get('/user/{user_name}', 'UserController@index')->name('user_about');
+Route::get('/user/{user_name}/activity', 'UserController@conversations')->name('user_conversations');
+Route::get('/user/{user_name}/following', 'UserController@following')->name('user_following');
 
 Route::group(array('namespace' => 'Admin'), function () {
     Route::get('admin/users', 'UsersController@index')->name('user');

@@ -4,7 +4,9 @@
     </a>
     <div class="story-details">
         <h5 class="story-title"><a href="#" class="on-story-preview">Story title</a></h5>
+        @if (!isset($in_profile))
         <div class="story-uploader"><a href="#">@lang('app.by') MrKen</a></div>
+        @endif
         <div class="story-stats">
             <span class="view-count"><i class="fa fa-eye"></i> 1.1K</span>
             <span class="vote-count"><i class="fa fa-star"></i> 60.4 K</span>

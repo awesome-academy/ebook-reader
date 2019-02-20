@@ -2,7 +2,7 @@
 @section('title', 'Story title')
 @section('content')
 <div id="story-landing">
-    <header class="story-background holderjs" style="background-image: url('?holder.js/1920x600?bg=ccc');">
+    <header class="background story-background holderjs" style="background-image: url('?holder.js/1920x600?bg=ccc');">
         <div class="container">
             <div class="cover">
                 <img src="holder.js/176x275" height="281" width="180" />
@@ -176,7 +176,7 @@
             <div class="col-md-4">
                 <div class="card card-no-top">
                     <div class="card-body pt-3">
-                        <a href="#">@lang('app.report_story')</a>
+                        <a href="#">@lang('app.report_this_story')</a>
                     </div>
                 </div>
                 <div class="similar-stories card card-simple-header">

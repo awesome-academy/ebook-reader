@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scale=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scale=0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', config('app.name'))</title>
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" />
@@ -46,10 +46,18 @@
                 !!}
                 {!! Form::close() !!}
                 <ul class="navbar-nav">
+                    @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin') }}">@lang('app.log_in')</a></li>
+                        <span class="nav-text">{{ Auth::user()->full_name }}</span>
+                    </li>
+                    @else
                     <li class="nav-item">
-                        <a class="nav-link" href="#">@lang('app.sign_up')</a></li>
+                        <a class="nav-link" href="{{ route('login') }}">@lang('app.login')</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">@lang('app.register')</a>
+                    </li>
+                    @endauth
                 </ul>
             </div>
         </div>
@@ -57,7 +65,7 @@
     <main id="app-container">
         @yield('content')
     </main>
-    <footer>
+    <footer id="app-footer">
         <div class="container">
             <ul id="footer-items" class="d-flex justify-content-center" role="navigation">
                 <li><a href="#" rel="nofollow">@lang('app.language')</a></li>
