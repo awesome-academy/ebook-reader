@@ -7,13 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Story;
 use Carbon\Carbon;
 
-class BooksController extends Controller
+class StoryController extends Controller
 {
     public function index()
     {
         $books = Story::with('user')->get();
 
-        return view('backend.books.index', compact('books'));
+        return view('backend.stories.index', compact('books'));
     }
 
     public function show($id)
@@ -22,7 +22,7 @@ class BooksController extends Controller
         $createAt = Carbon::parse($book['created_at']);
         $updateAt = Carbon::parse($book['updated_at']);
 
-        return view('backend.books.information', compact('book', 'createAt', 'updateAt'));
+        return view('backend.stories.information', compact('book', 'createAt', 'updateAt'));
     }
 
     public function admin()
@@ -32,7 +32,7 @@ class BooksController extends Controller
 
     public function chapter()
     {
-        return view('backend.books.chapter');
+        return view('backend.stories.chapter');
     }
 
     public function review()
@@ -42,6 +42,6 @@ class BooksController extends Controller
 
     public function detail()
     {
-        return view('backend.books.detail');
+        return view('backend.stories.detail');
     }
 }

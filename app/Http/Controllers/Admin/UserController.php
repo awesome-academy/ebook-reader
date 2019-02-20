@@ -12,7 +12,7 @@ use App\Repositories\Eloquents\UserRepository;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\DB;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     protected $userRepo;
 

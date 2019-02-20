@@ -9,7 +9,7 @@ use App\Http\Requests\CategoryFormRequest;
 use App\Repositories\Eloquents\CategoryRepository;
 use Illuminate\Support\Facades\Lang;
 
-class CategoriesController extends Controller
+class CategoryController extends Controller
 {
     protected $cateRepo;
 
