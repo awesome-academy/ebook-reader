@@ -217,6 +217,20 @@ time {
     display: inline-block
 }
 
+.user-dropdown .dropdown-toggle {
+    position: relative;
+    padding-left: 36px! important;
+}
+
+.user-dropdown .dropdown-toggle .user-avatar {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: 0;
+    top: calc(50% - 16px);
+    border-radius: 50%;
+}
+
 /* Home */
 .group {
     padding-top: 1rem;

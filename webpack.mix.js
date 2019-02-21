@@ -18,6 +18,9 @@ mix.copyDirectory('node_modules/jquery/dist', 'public/vendor/jquery')
     .copy('resources/assets/frontend/js/main.js', 'public/js/main.js')
     .copy('resources/assets/frontend/css/styles.css', 'public/css/styles.css')
     .copy('resources/assets/frontend/css/simple.css', 'public/css/simple.css')
+    .copy('resources/assets/frontend/images/0_48.png', 'public/upload/avatars/0_48.png')
+    .copy('resources/assets/frontend/images/0_128.png', 'public/upload/avatars/0_128.png')
+    .copy('resources/assets/frontend/images/0_256.png', 'public/upload/avatars/0_256.png')
     // TODO: dev
     .copy('node_modules/holderjs', 'public/vendor/holderjs');
 
