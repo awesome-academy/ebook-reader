@@ -12,7 +12,7 @@
 */
 
 // Home
-Route::get('/', 'HomeControler@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 // Category
 Route::get('/stories/{slug}', 'HomeController@meta')->name('meta');
@@ -30,23 +30,23 @@ Route::get('/user/{user_name}/activity', 'UserController@conversations')->name('
 Route::get('/user/{user_name}/following', 'UserController@following')->name('user_following');
 
 Route::group(array('namespace' => 'Admin'), function () {
-    Route::get('admin/users', 'UsersController@index')->name('user');
-    Route::get('admin/user/{id?}/update', 'UsersController@edit')->name('updateuser');
-    Route::post('admin/user/{id?}/update', 'UsersController@update');
-    Route::get('admin/categories', 'CategoriesController@index')->name('categories');
-    Route::post('admin/categories', 'CategoriesController@store');
-    Route::get('admin/categories/{id?}', 'CategoriesController@edit')->name('updatecate');
-    Route::post('admin/categories/{id?}', 'CategoriesController@update');
-    Route::get('admin/categories/{id}/delete', 'CategoriesController@destroy')->name('deletecate');
-    Route::get('admin/users/create', 'UsersController@create')->name('adduser');
-    Route::post('admin/users/create', 'UsersController@store');
-    Route::get('admin/user/delete/{id}', 'UsersController@destroy')->name('deleteuser');
-    Route::get('admin/books', 'BooksController@index')->name('book');
-    Route::get('admin/book/{id}/info', 'BooksController@show')->name('bookinfo');
-    Route::get('admin', 'BooksController@admin')->name('admin');
-    Route::get('admin/book/id/chapter', 'BooksController@chapter')->name('chapter');
-    Route::get('admin/reviews', 'BooksController@review')->name('review');
-    Route::get('admin/book/id', 'BooksController@detail')->name('bookdetail');
+    Route::get('admin/users', 'UserController@index')->name('user');
+    Route::get('admin/user/{id?}/update', 'UserController@edit')->name('updateuser');
+    Route::post('admin/user/{id?}/update', 'UserController@update');
+    Route::get('admin/categories', 'CategoryController@index')->name('categories');
+    Route::post('admin/categories', 'CategoryController@store');
+    Route::get('admin/categories/{id?}', 'CategoryController@edit')->name('updatecate');
+    Route::post('admin/categories/{id?}', 'CategoryController@update');
+    Route::get('admin/categories/{id}/delete', 'CategoryController@destroy')->name('deletecate');
+    Route::get('admin/users/create', 'UserController@create')->name('adduser');
+    Route::post('admin/users/create', 'UserController@store');
+    Route::get('admin/user/delete/{id}', 'UserController@destroy')->name('deleteuser');
+    Route::get('admin/stories', 'StoryController@index')->name('book');
+    Route::get('admin/story/{id}/info', 'StoryController@show')->name('bookinfo');
+    Route::get('admin', 'StoryController@admin')->name('admin');
+    Route::get('admin/story/id/chapter', 'StoryController@chapter')->name('chapter');
+    Route::get('admin/reviews', 'StoryController@review')->name('review');
+    Route::get('admin/story/id', 'StoryController@detail')->name('bookdetail');
 });
 
 Route::group(['middleware' => 'locale'], function() {
