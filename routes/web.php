@@ -20,10 +20,6 @@ Route::get('/stories/{slug}', 'HomeController@meta')->name('meta');
 Route::get('/story/{id}', 'HomeController@story')->name('story');
 // Story part
 Route::get('/{id}', 'HomeController@part')->name('part');
-// Login
-Route::get('/login', 'HomeController@login')->name('login');
-// Register
-Route::get('/register', 'HomeController@register')->name('register');
 // profile
 Route::get('/user/{user_name}', 'UserController@index')->name('user_about');
 Route::get('/user/{user_name}/activity', 'UserController@conversations')->name('user_conversations');
@@ -53,3 +49,7 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('change-language/{language}', 'LanguageController@changeLanguage')
         ->name('change-language');
 });
+
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index');

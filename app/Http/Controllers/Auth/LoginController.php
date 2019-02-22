@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -35,5 +36,19 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm()
+    {
+        return view('front.login');
+    }
+
+    protected function credentials(Request $request)
+    {
+        $login_type = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'login_name';
+        $email = $login_name = $request->email;
+        $password = $request->password;
+
+        return compact($login_type, 'password');
     }
 }

@@ -2,6 +2,28 @@
 
 return [
     'per_page' => 15,
+    // user avatar
+    'default_avatar' => '0.png',
+    'avatar_path' => '/upload/avatars/',
+    'avatar_sizes' => [
+        48,
+        128,
+        256,
+    ],
+    // user cover
+    'user_cover_path' => '/upload/user_covers/',
+    'user_cover_sizes' => [
+        [320, 160],
+        [1920, 600],
+    ],
+    // story image
+    'story_cover_path' => '/upload/story_covers/',
+    'story_cover_sizes' => [
+        [80, 120],
+        [144, 225],
+        [160, 240],
+        [1920, 600],
+    ],
 
     /*
     |--------------------------------------------------------------------------

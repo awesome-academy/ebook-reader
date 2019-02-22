@@ -47,8 +47,18 @@
                 {!! Form::close() !!}
                 <ul class="navbar-nav">
                     @auth
-                    <li class="nav-item">
-                        <span class="nav-text">{{ Auth::user()->full_name }}</span>
+                    <li class="nav-item dropdown user-dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                            <img class="user-avatar" src="{{ get_avatar(Auth::user(), 48) }}" alt="{{ Auth::user()->login_name }}" />
+                            <span>{{ Auth::user()->full_name }}</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="{{ route('user_about', ['user_name' => Auth::user()->login_name]) }}" class="dropdown-item">@lang('app.my_profile')</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" id="logout">@lang('app.logout')</a>
+                            {!! Form::open(['url' => route('logout'), 'method' => 'post', 'id' => 'logoutForm', 'hidden']) !!}
+                            {!! Form::close() !!}
+                        </div>
                     </li>
                     @else
                     <li class="nav-item">

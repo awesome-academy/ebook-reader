@@ -16,9 +16,9 @@ class HomeController extends Controller
         return view('front.stories');
     }
 
-    public function story()
+    public function story(Request $request)
     {
-        if (Request::ajax()) {
+        if ($request->ajax()) {
             return view('front.story_preview');
         } else {
             return view('front.story');
@@ -28,15 +28,5 @@ class HomeController extends Controller
     public function part()
     {
         return view('front.part');
-    }
-
-    public function login()
-    {
-        return view('front.login');
-    }
-
-    public function register()
-    {
-        return view('front.register');
     }
 }
