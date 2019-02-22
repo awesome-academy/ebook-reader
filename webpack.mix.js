@@ -31,3 +31,4 @@ mix.copyDirectory('node_modules/jquery/dist', 'public/vendor/jquery')
 
 mix.copyDirectory('vendor/bower_components', 'public/bower_components');
 mix.js('resources/assets/custom.js', 'public/js');
+mix.copyDirectory('resources/assets/custom.css', 'public/css');
