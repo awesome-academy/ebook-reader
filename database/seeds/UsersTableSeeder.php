@@ -26,6 +26,9 @@ class UsersTableSeeder extends Seeder
             factory(App\Models\Story::class, rand(1, 4))->create([
                 'user_id' => $user->id,
             ]);
+            factory(App\Models\SaveList::class, rand(1, 4))->create([
+                'user_id' => $user->id,
+            ]);
         });
     }
 }

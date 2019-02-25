@@ -40,6 +40,11 @@ class Story extends Model
         return $this->morphMany('App\Models\Comment', 'object')->where('parent_id', 0);
     }
 
+    public function metas()
+    {
+        return $this->belongsToMany('App\Models\Meta', 'meta_story', 'story_id', 'meta_id');
+    }
+
     public function reports()
     {
         return $this->hasMany('App\Models\Report', 'story_id');
