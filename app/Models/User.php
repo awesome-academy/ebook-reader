@@ -66,9 +66,9 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\User', 'follows', 'followed_user_id', 'following_user_id');
     }
 
-    public function lists()
+    public function saveLists()
     {
-        return $this->hasMany('App\Models\List', 'user_id');
+        return $this->hasMany('App\Models\SaveList', 'user_id');
     }
 
     public function notifications()
