@@ -1,27 +1,31 @@
-<div class="story d-flex" data-url="{{ route('story', ['id' => 1]) }}">
-    <a href="#" class="on-story-preview">
-        <img class="story-thumbnail" data-src="holder.js/160x240" />
+<div class="story d-flex" data-url="{{ route('story', ['id' => $story->id, 'slug' => $story->slug]) }}">
+    <a href="{{ route('story', ['id' => $story->id, 'slug' => $story->slug]) }}" class="on-story-preview item-cover">
+        <img class="story-thumbnail" src="{{ get_story_cover($story, 1) }}" />
     </a>
-    <div class="story-details">
-        <h5 class="story-title"><a href="#" class="on-story-preview">Story title</a></h5>
+    <div class="story-details text-truncate">
+        <h5 class="story-title text-truncate">
+            <a href="{{ route('story', ['id' => $story->id, 'slug' => $story->slug]) }}" class="on-story-preview text-truncate">{{ $story->title }}</a>
+        </h5>
         @if (!isset($in_profile))
-        <div class="story-uploader"><a href="#">@lang('app.by') MrKen</a></div>
+        <div class="story-uploader"><a href="{{ route('user_about', ['user_name' => $story->user->login_name]) }}">@lang('app.by') {{ $story->user->full_name }}</a></div>
         @endif
         <div class="story-stats">
-            <span class="view-count"><i class="fa fa-eye"></i> 1.1K</span>
-            <span class="vote-count"><i class="fa fa-star"></i> 60.4 K</span>
-            <span class="part-count"><i class="fa fa-list-ul"></i> 16</span>
+            <span class="view-count"><i class="fa fa-eye"></i> {{ $story->views }}</span>
+            <span class="vote-count"><i class="fa fa-star"></i> {{ $story->chapters->sum('votes_count') }}</span>
+            <span class="part-count"><i class="fa fa-list-ul"></i> {{ $story->chapters_count }}</span>
         </div>
-        <p class="story-summary">Some text about this story. Some text about this story. Some text
-            about this story.</p>
+        <p class="story-summary">{{ str_limit($story->summary, config('app.story_summary_limit'), '...') }}</p>
         <div class="story-tags">
             <ul class="tag-items">
-                <li><a href="{{ route('meta', ['slug' => 'love']) }}">love</a></li>
-                <li><a href="{{ route('meta', ['slug' => 'action']) }}">action</a></li>
-                <li><a href="{{ route('meta', ['slug' => 'humor']) }}">humor</a></li>
-                <li><a href="{{ route('meta', ['slug' => 'adventure']) }}">adventure</a></li>
+                @foreach ($story->metas->take(config('app.shown_meta')) as $meta)
+                <li><a href="{{ route('meta', ['slug' => $meta->slug]) }}">{{ $meta->name }}</a></li>
+                @endforeach
             </ul>
-            <span class="on-story-preview num-not-show">+@lang('app.more_tag', ['count' => 18])</span>
+            @if ($story->metas_count > config('app.shown_meta'))
+            <span class="on-story-preview num-not-show">
+                +@lang('app.more_tag', ['count' => ($story->metas_count - config('app.shown_meta'))])
+            </span>
+            @endif
         </div>
     </div>
 </div>

@@ -149,7 +149,7 @@ class BaseRepository implements RepositoryInterface
             abort(404);
         }
         
-        return $this->result;
+        return $result;
     }
 
     public function create(array $data)

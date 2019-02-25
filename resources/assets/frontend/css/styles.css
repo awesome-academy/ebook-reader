@@ -291,7 +291,8 @@ time {
 }
 
 .story-details>.story-summary {
-    margin: 0.5rem 0
+    margin: 0.5rem 0;
+    white-space: initial;
 }
 
 .story-details>.story-tags {
@@ -321,18 +322,25 @@ time {
     cursor: pointer;
 }
 
-.owl-nav>button>span {
-    position: absolute;
-    top: calc(50% - 25px);
-    font-size: 50px;
+.story-groups .owl-carousel .owl-item img {
+    width: auto
 }
 
-.owl-nav>.owl-prev>span {
+.owl-nav>button {
+    position: absolute;
+    top: calc(50% - 25px);
+}
+
+.owl-nav>.owl-prev {
     left: -50px;
 }
 
-.owl-nav>.owl-next>span {
+.owl-nav>.owl-next {
     right: -50px;
+}
+
+.owl-nav>button>span {
+    font-size: 50px;
 }
 
 .col-story {
