@@ -17,7 +17,7 @@ Route::get('/', 'HomeController@index')->name('home');
 // Category
 Route::get('/stories/{slug}', 'HomeController@meta')->name('meta');
 // Story details
-Route::get('/story/{id}', 'HomeController@story')->name('story');
+Route::get('/story/{id}-{slug}', 'HomeController@story')->name('story');
 // Story part
 Route::get('/{id}', 'HomeController@part')->name('part');
 // profile

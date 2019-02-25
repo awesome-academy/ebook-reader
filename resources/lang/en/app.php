@@ -52,6 +52,8 @@ return [
     'reading_lists' => '{0} Reading Lists|{1} Reading List|[2,*] Reading Lists',
     'reading_lists_count' => '{0} :count Reading Lists|{1} :count Reading List|[2,*] :count Reading Lists',
     'recent_activity' => 'Recent Activity',
+    'recent_stories' => 'Recent Stories',
+    'recent_stories_description' => 'Recent updated stories',
     'recent_comments' => 'Recent Comments',
     'recommendations' => 'Recommendations',
     'recommendations_description' => 'A fresh set of stories, just for you',

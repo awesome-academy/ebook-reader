@@ -1,6 +1,7 @@
 <?php
 
 return [
+    // item per page
     'per_page' => 15,
     // user avatar
     'default_avatar' => '0.png',
@@ -11,19 +12,26 @@ return [
         256,
     ],
     // user cover
+    'user_default_cover' => '0.jpeg',
     'user_cover_path' => '/upload/user_covers/',
     'user_cover_sizes' => [
         [320, 160],
         [1920, 600],
     ],
-    // story image
+    // story cover
+    'story_default_cover' => '0.jpeg',
     'story_cover_path' => '/upload/story_covers/',
     'story_cover_sizes' => [
-        [80, 120],
         [144, 225],
         [160, 240],
         [1920, 600],
     ],
+    // number of meta show in story item
+    'shown_meta' => 5,
+    // story summary length
+    'story_summary_limit' => 127,
+    // home page stories cache time in minute
+    'cache_time' => 10,
 
     /*
     |--------------------------------------------------------------------------
