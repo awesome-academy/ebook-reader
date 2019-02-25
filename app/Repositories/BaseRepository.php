@@ -60,11 +60,15 @@ class BaseRepository implements RepositoryInterface
     public function orderBy($column, $direction = 'asc')
     {
         $this->model = $this->model->orderBy($column, $direction);
+
+        return $this;
     }
 
     public function limit($limit)
     {
         $this->model = $this->model->limit($limit);
+
+        return $this;
     }
 
     public function offset($offset)
@@ -78,6 +82,13 @@ class BaseRepository implements RepositoryInterface
         $this->resetModel();
 
         return $result;
+    }
+
+    public function with($relations)
+    {
+        $this->model = $this->model->with($relations);
+
+        return $this;
     }
 
     public function withCount($relations)

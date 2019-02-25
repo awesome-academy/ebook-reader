@@ -16,6 +16,8 @@ interface RepositoryInterface
 
     public function count();
 
+    public function with($relations);
+
     public function withCount($relations);
 
     public function select();
