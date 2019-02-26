@@ -37,7 +37,7 @@
                         <td>{!! ($story->status > 0) ? 'no' : 'yes' !!}</td>
                         <td>{!! $story->views !!}</td>
                         <td>{!! ($story->is_completed > 0) ? 'no' : 'yes' !!}</td>
-                        <td>{!! ($story->is_recommended > 0) ? 'no' : 'yes' !!}</td>
+                        <td>{!! ($story->is_recommended < 1) ? 'no' : 'yes' !!}</td>
                         <td class="text-center"><a class="btn btn-secondary" href="{{ route('story_info', ['id' => $story->id]) }}"><i class="fas fa-info-circle"></i> {{ trans('tran.information') }}</a>
                         <a onclick="return confirm('{{ trans('tran.delete_story') }}')"
                                 href="{{ route('delete_story', ['id' => $story->id]) }}" class="btn btn-danger"><i

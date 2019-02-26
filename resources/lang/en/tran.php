@@ -73,6 +73,7 @@ return [
     'meta_delete_status' => 'The meta has been deleted!',
     'meta_create_status' => 'The meta has been created!',
     'story_delete_status' => 'The story has been deleted!',
+    'story_update_status' => 'The story has been updated!',
     'enter_cate' => 'Enter category',
     'tip_detail' => 'click here to show story detail',
     'ready_leave' => 'Ready to leave?',

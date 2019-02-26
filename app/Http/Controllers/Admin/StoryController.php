@@ -27,15 +27,35 @@ class StoryController extends Controller
     public function show($id)
     {
         $story = $this->story->with(['user', 'chapters'])->findOrFail($id);
-        $metas = $story->categories;
-        $cate = '';
-        foreach ($metas as $meta) {
-            $cate .= $meta->name . "\n";
+        $cates;
+        if ($story->categories != null) {
+            $cates = $story->categories;
         }
+
+        $tags;
+        if ($story->tags != null) {
+            $tags = $story->tags;
+        }
+
         $createAt = Carbon::parse($story['created_at']);
         $updateAt = Carbon::parse($story['updated_at']);
 
-        return view('backend.stories.information', compact('story', 'createAt', 'updateAt', 'cate'));
+        return view('backend.stories.information', compact('story', 'createAt', 'updateAt', 'cates', 'tags'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $story = $this->story->findOrFail($id);
+        $mature = ($request->get('mature') != true) ? 0 : 1;
+        $status = ($request->get('status') != true) ? 0 : 1;
+        $recommended = ($request->get('recommended') != true) ? 0 : 1;
+        $story->update([
+            'is_mature' => $mature,
+            'status' => $status,
+            'is_recommended' => $recommended,
+        ]);
+
+        return redirect()->back()->with('status', __('tran.story_update_status'));
     }
 
     public function destroy($id)

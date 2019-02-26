@@ -29,21 +29,25 @@ Route::group(array('namespace' => 'Admin'), function () {
     Route::get('admin/users', 'UserController@index')->name('user');
     Route::get('admin/user/{id?}/update', 'UserController@edit')->name('update_user');
     Route::post('admin/user/{id?}/update', 'UserController@update');
+    Route::get('admin/users/create', 'UserController@create')->name('add_user');
+    Route::post('admin/users/create', 'UserController@store');
+    Route::get('admin/user/delete/{id}', 'UserController@destroy')->name('delete_user');
+
     Route::get('admin/categories', 'CategoryController@index')->name('categories');
     Route::post('admin/categories', 'CategoryController@store');
     Route::get('admin/categories/{id?}', 'CategoryController@edit')->name('update_cate');
     Route::post('admin/categories/{id?}', 'CategoryController@update');
     Route::get('admin/categories/{id}/delete', 'CategoryController@destroy')->name('delete_cate');
-    Route::get('admin/users/create', 'UserController@create')->name('add_user');
-    Route::post('admin/users/create', 'UserController@store');
-    Route::get('admin/user/delete/{id}', 'UserController@destroy')->name('delete_user');
+    
     Route::get('admin/stories', 'StoryController@index')->name('story_admin');
     Route::get('admin/story/{id}/info', 'StoryController@show')->name('story_info');
+    Route::post('admin/story/{id}/info', 'StoryController@update')->name('story_update');
     Route::get('admin', 'StoryController@admin')->name('admin');
     Route::get('admin/story/{id}/delete', 'StoryController@destroy')->name('delete_story');
+    Route::get('admin/reviews', 'StoryController@review')->name('review');
+
     Route::get('admin/story/{id}/detail', 'ChapterController@show')->name('story_detail');
     Route::get('admin/story/chapter/{id}', 'ChapterController@chapterDetail')->name('chapter');
-    Route::get('admin/reviews', 'StoryController@review')->name('review');
 });
 
 Route::group(['middleware' => 'locale'], function() {
