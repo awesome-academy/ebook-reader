@@ -219,7 +219,7 @@ time {
 
 .user-dropdown .dropdown-toggle {
     position: relative;
-    padding-left: 36px! important;
+    padding-left: 36px ! important;
 }
 
 .user-dropdown .dropdown-toggle .user-avatar {
@@ -271,7 +271,8 @@ time {
 }
 
 .story-details>.story-title a {
-    color: #222
+    color: #222;
+    font-size: 1.125rem
 }
 
 .story-details>.story-uploader {
@@ -379,7 +380,8 @@ ul#footer-items {
     text-shadow: 0 1px 0 #000
 }
 
-#storyPreviewModal .modal-content {
+#storyPreviewModal .modal-content,
+#storyPreviewModal .modal-content .modal-header {
     background: transparent;
     border: none
 }
@@ -395,6 +397,10 @@ ul#footer-items {
 
 #storyPreviewModal .modal-body>.row>.col-6 {
     padding: 0
+}
+
+#storyPreviewModal .story-title {
+    font-size: 1.125rem
 }
 
 #storyPreviewModal .story-stats {
@@ -1235,9 +1241,11 @@ ul#footer-items {
     border-bottom-left-radius: calc(0.25rem - 1px);
     text-align: center;
 }
+
 .user-card footer div h5 {
     margin-bottom: 0
 }
+
 .user-card footer div h5 .small {
     font-size: 12px
 }

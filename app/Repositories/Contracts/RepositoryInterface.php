@@ -26,6 +26,8 @@ interface RepositoryInterface
     
     public function get();
 
+    public function first();
+
     public function paginate($perPage = null);
 
     public function find($id);

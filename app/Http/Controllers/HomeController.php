@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Repositories\StoryRepository;
 use Auth;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
@@ -23,20 +22,6 @@ class HomeController extends Controller
         $recent_stories = $this->getRecentStories();
 
         return view('front.home', compact('archived_stories', 'recommended_stories', 'recent_stories'));
-    }
-
-    public function meta()
-    {
-        return view('front.stories');
-    }
-
-    public function story(Request $request)
-    {
-        if ($request->ajax()) {
-            return view('front.story_preview');
-        } else {
-            return view('front.story');
-        }
     }
 
     public function part()

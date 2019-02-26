@@ -15,9 +15,10 @@
 Route::get('/', 'HomeController@index')->name('home');
 
 // Category
-Route::get('/stories/{slug}', 'HomeController@meta')->name('meta');
+Route::get('/stories/{slug}', 'MetaController@stories')->name('meta');
+Route::get('/stories/{slug}/new', 'MetaController@newStories')->name('meta_new_stories');
 // Story details
-Route::get('/story/{id}-{slug}', 'HomeController@story')->name('story');
+Route::get('/story/{id}-{slug}', 'StoryController@story')->name('story');
 // Story part
 Route::get('/{id}', 'HomeController@part')->name('part');
 // profile

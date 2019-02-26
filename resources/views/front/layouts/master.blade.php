@@ -31,9 +31,9 @@
                             @lang('app.discover')
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            @for ($i = 0; $i < 20; $i++)
-                            <a class="dropdown-item" href="{{ route('meta', ['slug' => 'test']) }}">Category name</a>
-                            @endfor
+                            @foreach ($categories as $category)
+                                <a class="dropdown-item" href="{{ route('meta', ['slug' => $category->slug]) }}"> {{ $category->name }}</a>
+                            @endforeach
                         </div>
                     </li>
                     <li class="nav-item">

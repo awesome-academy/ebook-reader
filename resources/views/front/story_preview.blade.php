@@ -1,16 +1,16 @@
 <div class="row">
     <a class="col-6">
-        <img src="holder.js/280x400" />
+        <img src="{{ get_story_cover($story, 2) }}" />
     </a>
     <div class="col-6 px-3 pt-3 d-flex flex-column">
-        <h4>Story title</h4>
+        <h4 class="story-title">{{ $story->title }}</h4>
         <div class="story-stats">
-            <span class="view-count"><i class="fa fa-eye"></i> 10.2k</span>
-            <span class="vote-count"><i class="fa fa-star"></i> 1.2K</span>
-            <span class="part-count"><i class="fa fa-list-ul"></i> 69</span>
+            <span class="view-count"><i class="fa fa-eye"></i> {{ $story->views }}</span>
+            <span class="vote-count"><i class="fa fa-star"></i> {{ $story->chapters->sum('vote_count') }}</span>
+            <span class="part-count"><i class="fa fa-list-ul"></i> {{ $story->chapters_count }}</span>
         </div>
         <div class="actions">
-            <a href="{{ route('story', ['id' => 1]) }}" class="btn btn-sm btn-primary start-reading">@lang('app.read')</a>
+            <a href="{{ route('story', ['id' => $story->id, 'slug' => $story->slug]) }}" class="btn btn-sm btn-primary start-reading">@lang('app.read')</a>
             <div class="d-inline-block dropdown button-save">
                 <button class="btn btn-sm btn-primary" id="saveStory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+</button>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -28,20 +28,28 @@
                 </div>
             </div>
         </div>
-        <div class="story-summary">Some text about this story. Some text about this story. Some text about this story.
-            <a href="{{ route('story', ['slug' => 'test']) }}">@lang('app.more')</a></div>
+        <div class="story-summary">{{ str_limit($story->summary, config('app.story_summary_limit'), '...') }}
+            <a href="{{ route('story', ['id' => $story->id, 'slug' => $story->slug]) }}">@lang('app.more')</a>
+        </div>
         <div class="story-tags">
             <ul class="tag-items">
-                <li><a href="{{ route('meta', ['slug' => 'love']) }}">love</a></li>
-                <li><a href="{{ route('meta', ['slug' => 'action']) }}">action</a></li>
-                <li><a href="{{ route('meta', ['slug' => 'humor']) }}">humor</a></li>
-                <li><a href="{{ route('meta', ['slug' => 'adventure']) }}">adventure</a></li>
+                @foreach ($story->metas->take(config('app.shown_meta')) as $meta)
+                <li><a href="{{ route('meta', ['slug' => $meta->slug]) }}">{{ $meta->name }}</a></li>
+                @endforeach
             </ul>
-            <span class="num-not-show">+@lang('app.more_tag', ['count' => 16])</span>
+            @if ($story->metas_count > config('app.shown_meta'))
+            <span class="on-story-preview num-not-show">
+                +@lang('app.more_tag', ['count' => ($story->metas_count - config('app.shown_meta'))])
+            </span>
+            @endif
         </div>
         <div class="story-info py-2 mt-auto">
-            <span class="completed text">@lang('app.completed')</span>
-            <time datime="a day ago">@lang('app.updated') a day ago</time>
+            @if ($story->is_completed)
+                <span class="completed text">@lang('app.completed')</span>
+            @else
+                <span class="ongoing text">@lang('app.ongoing')</span>
+                <time datime="a day ago">@lang('app.updated') {{ $story->updated_at->diffForHumans() }}</time>
+            @endif
         </div>
     </div>
 </div>
