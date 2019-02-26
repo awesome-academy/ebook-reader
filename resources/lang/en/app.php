@@ -39,6 +39,7 @@ return [
     'my_library' => 'My library',
     'my_profile' => 'My profile',
     'new' => 'New',
+    'ongoing' => 'Ongoing',
     'part_count' => ':count Part Story',
     'password' => 'Password',
     'password_confirmation' => 'Repeat password',

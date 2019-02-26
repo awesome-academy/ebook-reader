@@ -125,6 +125,14 @@ class BaseRepository implements RepositoryInterface
         return $result;
     }
 
+    public function first()
+    {
+        $result = $this->model->first();
+        $this->resetModel();
+
+        return $result;
+    }
+
     public function paginate($perPage = null)
     {
         $result = $this->model->paginate($perPage ?: config('app.per_page'));

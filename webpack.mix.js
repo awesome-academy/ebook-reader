@@ -25,6 +25,7 @@ mix.copyDirectory('node_modules/jquery/dist', 'public/vendor/jquery')
     .copy('resources/assets/frontend/images/user_320x160.jpeg', 'public/upload/user_covers/0_320x160.jpeg')
     .copy('resources/assets/frontend/images/story_1920x600.jpeg', 'public/upload/story_covers/0_1920x600.jpeg')
     .copy('resources/assets/frontend/images/story_160x240.jpeg', 'public/upload/story_covers/0_160x240.jpeg')
+    .copy('resources/assets/frontend/images/story_280x400.jpeg', 'public/upload/story_covers/0_280x400.jpeg')
     .copy('resources/assets/frontend/images/story_144x225.jpeg', 'public/upload/story_covers/0_144x225.jpeg')
     // TODO: dev
     .copy('node_modules/holderjs', 'public/vendor/holderjs');

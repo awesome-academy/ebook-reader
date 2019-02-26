@@ -34,6 +34,21 @@ $(document).ready(function () {
             $('#storyPreviewModal').modal('show');
         })
         return false;
+    }).on('click', '#new-tab', function() {
+        var $this = $(this),
+            $target = $($this.attr('href')),
+            story_url = $this.data('url');
+        if (!! $target.text().trim()) {
+            return;
+        }
+        $.ajax({
+            url: story_url,
+            method: 'GET',
+            cache: false,
+            dataType: 'html'
+        }).done(function (res) {
+            $target.html(res);
+        })
     });
     $('#logout').on('click', function(e) {
         e.preventDefault();

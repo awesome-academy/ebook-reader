@@ -2,7 +2,7 @@
 
 return [
     // item per page
-    'per_page' => 15,
+    'per_page' => 10,
     // user avatar
     'default_avatar' => '0.png',
     'avatar_path' => '/upload/avatars/',
@@ -24,6 +24,7 @@ return [
     'story_cover_sizes' => [
         [144, 225],
         [160, 240],
+        [280, 400],
         [1920, 600],
     ],
     // number of meta show in story item
