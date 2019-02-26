@@ -24,6 +24,9 @@
 
     <!-- CKEditor -->
     <script src="{{ asset('bower_components/ckeditor/ckeditor.js') }}"></script>
+
+    <!--main CSS-->
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -108,9 +111,9 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link" href="{{ route('book') }}" id="pagesDropdown" role="button">
+                <a class="nav-link" href="{{ route('story_admin') }}" id="pagesDropdown" role="button">
                     <i class="fas fa-fw fa-book"></i>
-                    <span>{{ trans('tran.book')}}</span>
+                    <span>{{ trans('tran.story') }}</span>
                 </a>
             </li>
             <li class="nav-item dropdown">
@@ -126,7 +129,7 @@
                     <span>{{ trans('tran.comment') }}</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <a class="dropdown-item" href="#">{{ trans('tran.book_comment') }}</a>
+                    <a class="dropdown-item" href="#">{{ trans('tran.story_comment') }}</a>
                     <a class="dropdown-item" href="#">{{ trans('tran.review_comment') }}</a>
                 </div>
             </li>

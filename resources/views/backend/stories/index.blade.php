@@ -1,14 +1,19 @@
 @extends('backend.master')
-@section('title', 'Book')
+@section('title', 'Story')
 @section('content')
 <div class="card mb-3">
     <div class="card-header">
-        <i class="fas fa-user"></i>
-        {{ trans('tran.book') }}</div>
+        <i class="fas fa-book"></i>
+        {{ trans('tran.story') }}</div>
     <div class="card-body">
         <hr/>
+        @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+        @endif
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable">
+            <table class="table table-bordered bookTable" id="dataTable">
                 <thead>
                     <tr>
                         <th>{{ trans('tran.id') }}</th>
@@ -23,18 +28,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($books as $book)
+                @foreach ($stories as $story)
                     <tr>
-                        <td>{!! $book->id !!}</td>
-                        <td>{!! $book->user->full_name !!}</td>
-                        <td><a class="btn btn-light" data-toggle="tooltip" data-placement="right" title="{{ trans('tran.tip_detail') }}" href="{{ route('bookdetail') }}">{!! $book->title !!}</a></td>
-                        <td>{!! ($book->is_mature > 0) ? 'no' : 'yes' !!}</td>
-                        <td>{!! ($book->status > 0) ? 'no' : 'yes' !!}</td>
-                        <td>{!! $book->views !!}</td>
-                        <td>{!! ($book->is_completed > 0) ? 'no' : 'yes' !!}</td>
-                        <td>{!! ($book->is_recommended > 0) ? 'no' : 'yes' !!}</td>
-                        <td class="text-center"><a class="btn btn-secondary" href="{{ route('bookinfo', ['id' => $book->id]) }}"><i class="fas fa-info-circle"></i> {{ trans('tran.information') }}</a>
-                        <a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i>{{ trans('tran.delete') }}</a></td>
+                        <td>{!! $story->id !!}</td>
+                        <td>{!! $story->user->full_name !!}</td>
+                        <td><a class="btn btn-light" data-toggle="tooltip" data-placement="right" title="{{ trans('tran.tip_detail') }}" href="{{ route('story_detail', ['id' => $story->id]) }}">{!! $story->title !!}</a></td>
+                        <td>{!! ($story->is_mature > 0) ? 'no' : 'yes' !!}</td>
+                        <td>{!! ($story->status > 0) ? 'no' : 'yes' !!}</td>
+                        <td>{!! $story->views !!}</td>
+                        <td>{!! ($story->is_completed > 0) ? 'no' : 'yes' !!}</td>
+                        <td>{!! ($story->is_recommended > 0) ? 'no' : 'yes' !!}</td>
+                        <td class="text-center"><a class="btn btn-secondary" href="{{ route('story_info', ['id' => $story->id]) }}"><i class="fas fa-info-circle"></i> {{ trans('tran.information') }}</a>
+                        <a onclick="return confirm('{{ trans('tran.delete_story') }}')"
+                                href="{{ route('delete_story', ['id' => $story->id]) }}" class="btn btn-danger"><i
+                                    class="fas fa-trash-alt"></i> {{ trans('tran.delete') }}</a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
