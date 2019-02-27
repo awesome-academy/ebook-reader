@@ -28,7 +28,7 @@ class MetaController extends Controller
     public function newStories($meta_slug, Request $request)
     {
         if ($request->ajax()) {
-            $meta = $this->meta->with(['stories' => function($query) {
+            $meta = $this->meta->with(['stories' => function ($query) {
                 return $query->orderBy('updated_at', 'desc')->paginate(config('app.per_page'));
             }])->findOrFailBySlug($meta_slug);
             $new_stories = $meta->stories;

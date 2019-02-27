@@ -28,7 +28,7 @@ class StoryController extends Controller
         $story = $this->story->with([
             'metas',
             'chapters' => function ($query) {
-                return $query->withCount('votes');
+                return $query->select('id')->withCount('votes');
             },
             'user',
         ])->withCount(['metas', 'chapters'])->findOrFail($id);
@@ -38,6 +38,34 @@ class StoryController extends Controller
 
     private function getStoryInfo($id)
     {
-        
+        $story = $this->story->with([
+            'metas',
+            'chapters' => function ($query) {
+                return $query->withCount('votes')->orderBy('id', 'asc');
+            },
+            'user',
+        ])->withCount(['metas', 'chapters'])->findOrFail($id);
+
+        $story->chapters = $story->chapters->map(function ($chapter) use ($story) {
+            $chapter->slug = $story->slug . '-' . $chapter->slug;
+
+            return $chapter;
+        });
+
+        $story->votes_count = $story->chapters->sum('votes_count');
+        $story->share_text = urlencode($story->title);
+        $story->share_url = urlencode(route('story', ['id' => $story->id, 'slug' => $story->slug]));
+        $first_chapter = $story->chapters->first();
+        $recent_comments = $this->story->getStoryRecentComments($story);
+
+        $recent_comments = $recent_comments->map(function ($comment) use ($story) {
+            $comment->chapter = $story->chapters->find($comment->commentable_id);
+
+            return $comment;
+        });
+
+        $recommended_stories = $this->story->getRecommendedStories();
+
+        return view('front.story', compact('story', 'first_chapter', 'recent_comments', 'recommended_stories'));
     }
 }

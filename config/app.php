@@ -3,6 +3,9 @@
 return [
     // item per page
     'per_page' => 10,
+    'comments_per_page' => 5,
+    'random_items' => 5,
+    'max_random_items' => 25,
     // user avatar
     'default_avatar' => '0.png',
     'avatar_path' => '/upload/avatars/',
@@ -22,8 +25,7 @@ return [
     'story_default_cover' => '0.jpeg',
     'story_cover_path' => '/upload/story_covers/',
     'story_cover_sizes' => [
-        [144, 225],
-        [160, 240],
+        [176, 275],
         [280, 400],
         [1920, 600],
     ],

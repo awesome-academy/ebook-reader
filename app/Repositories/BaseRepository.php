@@ -50,6 +50,13 @@ class BaseRepository implements RepositoryInterface
         return $this;
     }
 
+    public function whereIn($column, $values)
+    {
+        $this->model = $this->model->whereIn($column, $values);
+
+        return $this;
+    }
+
     public function orWhere($conditions, $operator = null, $value = null)
     {
         $this->model = $this->model->orWhere($conditions. $operator, $value);
@@ -179,5 +186,13 @@ class BaseRepository implements RepositoryInterface
     public function truncate()
     {
         $this->model->truncate();
+    }
+
+    public function toSql()
+    {
+        $result = $this->model->toSql();
+        $this->resetModel();
+
+        return $result;
     }
 }

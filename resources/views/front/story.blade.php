@@ -1,59 +1,55 @@
 @extends('front.layouts.master')
-@section('title', 'Story title')
+@section('title', $story->title)
 @section('content')
 <div id="story-landing">
-    <header class="background story-background holderjs" style="background-image: url('?holder.js/1920x600?bg=ccc');">
-        <div class="container">
-            <div class="cover">
-                <img src="holder.js/176x275" height="281" width="180" />
-            </div>
-            <h1>Story title</h1>
-            <div class="story-stats">
-                <span title="@lang('app.view_count', ['count' => '284,843'])">@lang('app.view_count', ['count' => '284K'])</span>
-                <span title="@lang('app.vote_count', ['count' => '19,283'])">@lang('app.vote_count', ['count' => '19.2K'])</span>
-                <span>@lang('app.part_count', ['count' => 9])</span>
-            </div>
-            <div class="story-author">
-                <a href="#" class="avatar avatar-md pull-left">
-                    <img src="holder.js/48x48" width="48" height="48" alt="Jamie Harris" />
-                </a>
-                <strong>@lang('app.by') <a href="#">admin</a></strong>
-                <small title="@lang('app.first_published'): Mar 08, 2016">
-                    <span>@lang('app.completed')</span>
-                </small>
-            </div>
-            <div id="story-share" class="story-share">
-                <a class="share-facebook social-share" rel="nofollow" target="_blank" href="#">
-                    <span class="fa fa-facebook" aria-hidden="true"></span>
-                </a>
-                <a class="share-twitter social-share" rel="nofollow" target="_blank" href="#">
-                    <span class="fa fa-twitter" aria-hidden="true"></span>
-                </a>
-                <a class="share-pinterest social-share" rel="nofollow" target="_blank" href="#">
-                    <span class="fa fa-pinterest" aria-hidden="true"></span>
-                </a>
-                <a class="share-tumblr social-share" rel="nofollow" target="_blank" href="#">
-                    <span class="fa fa-tumblr" aria-hidden="true"></span>
-                </a>
-                <a class="share-post-to-profile" href="#">
-                    <span class="fa fa-user" aria-hidden="true"></span>
-                </a>
-                <div class="button-group position-relative d-inline-block">
-                    <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="fa fa-ellipsis-h"
-                            aria-hidden="true"></span></button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item share-embed" href="#" data-share-channel="embed">
-                            <span class="fa fa-fw fa-code" aria-hidden="true"></span>
-                            @lang('app.embed_story')
-                        </a>
-                        <a class="dropdown-item share-google_plus social-share" rel="nofollow" target="_blank" href="#">
-                            <span class="fa fa-fw fa-google-plus" aria-hidden="true"></span>
-                            @lang('app.share_via_google_plus')
-                        </a>
-                        <a class="dropdown-item share-email" href="#">
-                            <span class="fa fa-fw fa-inbox" aria-hidden="true"></span>
-                            @lang('app.share_via_email')
-                        </a>
+    <header class="background story-background" style="background-image: url('{{ get_story_cover($story, 2) }}');">
+        <div class="header-container">
+            <div class="container">
+                <div class="cover">
+                    <img src="{{ get_story_cover($story, 1) }}" height="281" width="180" />
+                </div>
+                <h1>{{ $story->title }}</h1>
+                <div class="story-stats">
+                    <span title="@lang('app.view_count', ['count' => $story->views ])">@lang('app.view_count', ['count' => $story->views])</span>
+                    <span title="@lang('app.vote_count', ['count' => $story->votes_count])">@lang('app.vote_count', ['count' => $story->votes_count])</span>
+                    <span>@lang('app.part_count', ['count' => $story->chapters_count])</span>
+                </div>
+                <div class="story-author">
+                    <a href="#" class="avatar avatar-md pull-left">
+                        <img src="{{ get_avatar($story->user, 0) }}" width="48" height="48" alt="{{ $story->user->full_name }}" />
+                    </a>
+                    <strong>@lang('app.by') <a href="{{ route('user_about', ['user_name' => $story->user->login_name]) }}">{{ $story->user->login_name }}</a></strong>
+                    <small title="@lang('app.first_published'): {{ $story->created_at->format(__('app.d_m_y_format')) }}">
+                        @if ($story->is_completed)
+                        <span>@lang('app.completed')</span>
+                        @else
+                        <span>@lang('app.ongoing') - @lang('app.updated') {{ $story->updated_at->format(__('app.d_m_y_format')) }}</span>
+                        @endif
+                    </small>
+                </div>
+                <div id="story-share" class="story-share">
+                    <a class="share-facebook social-share" rel="nofollow" target="_blank" href="https://www.facebook.com/sharer.php?u={{ $story->share_url }}">
+                        <span class="fa fa-facebook" aria-hidden="true"></span>
+                    </a>
+                    <a class="share-twitter social-share" rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text={{ $story->share_text }}&url={{ $story->share_url }}">
+                        <span class="fa fa-twitter" aria-hidden="true"></span>
+                    </a>
+                    <a class="share-post-to-profile" href="#">
+                        <span class="fa fa-user" aria-hidden="true"></span>
+                    </a>
+                    <div class="button-group position-relative d-inline-block">
+                        <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="fa fa-ellipsis-h"
+                                aria-hidden="true"></span></button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item share-embed" href="#" data-share-channel="embed">
+                                <span class="fa fa-fw fa-code" aria-hidden="true"></span>
+                                @lang('app.embed_story')
+                            </a>
+                            <a class="dropdown-item share-email" target="_blank" href="mailto:?subject={{ $story->share_text }}&body={{ $story->share_text }}%0A{{ $story->share_url }}">
+                                <span class="fa fa-fw fa-inbox" aria-hidden="true"></span>
+                                @lang('app.share_via_email')
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,7 +61,7 @@
                 <main class="card card-no-top">
                     <div class="card-body">
                         <div class="story-actions">
-                            <a href="{{ route('part', ['slug' => 'part-1']) }}" class="btn btn-primary btn-sm start-reading">@lang('app.read')</a>
+                            <a href="{{ route('part', ['id' => $first_chapter->id, 'slug' => $first_chapter->slug]) }}" class="btn btn-primary btn-sm start-reading">@lang('app.read')</a>
                             <div class="d-inline-block dropdown button-save">
                                 <button class="btn btn-sm btn-primary" id="saveStory" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">+</button>
@@ -85,13 +81,12 @@
                             </div>
                         </div>
                         <h2 class="story-summary">
-                            Some text about this story. Some text about this story. Some text about this story.
+                            {{ $story->summary }}
                         </h2>
                         <div class="story-tags">
-                            <a href="{{ route('meta', ['slug' => 'love']) }}" class="tag-item">love</a>
-                            <a href="{{ route('meta', ['slug' => 'action']) }}" class="tag-item">action</a>
-                            <a href="{{ route('meta', ['slug' => 'humor']) }}" class="tag-item">humor</a>
-                            <a href="{{ route('meta', ['slug' => 'adventure']) }}" class="tag-item">adventure</a>
+                            @foreach ($story->metas as $meta)
+                            <a href="{{ route('meta', ['slug' => $meta->slug]) }}" class="tag-item">{{ $meta->name }}</a>
+                            @endforeach
                         </div>
                         <div class="story-tabs">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -107,65 +102,28 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="comments" role="tabpanel" aria-labelledby="comments-tab">
                                     <ul class="list-group list-group-flush list-comments">
+                                        @foreach ($recent_comments as $comment)
                                         <li class="list-group-item">
                                             <div class="header clearfix">
                                                 <div class="avatar avatar-sm">
-                                                    <img src="holder.js/32x32" />
+                                                    <img src="{{ get_avatar($comment->user, 0) }}" />
                                                 </div>
                                                 <div class="info">
-                                                    <a class="username" href="#">Administrator</a> on <a class="chapername"
-                                                        href="{{ route('part', ['id' => 1]) }}">Part title</a>
-                                                    <small>Jan 1, 2019</small>
+                                                    <a class="username" href="{{ route('user_about', ['user_name' => $comment->user->login_name]) }}">{{ $comment->user->full_name }}</a> on <a class="chapername"
+                                                        href="{{ route('part', ['id' => $comment->chapter->id,  'slug' => $comment->chapter->slug]) }}">{{ $comment->chapter->title }}</a>
+                                                    <small>{{ $comment->created_at->format(__('app.d_m_y_format')) }}</small>
                                                 </div>
                                             </div>
-                                            <div class="content">Comment content</div>
+                                            <div class="content">{{ $comment->content }}</div>
                                         </li>
-                                        <li class="list-group-item">
-                                            <div class="header clearfix">
-                                                <div class="avatar avatar-sm">
-                                                    <img src="holder.js/32x32" />
-                                                </div>
-                                                <div class="info">
-                                                    <a class="username" href="#">Administrator</a> on <a class="chapername"
-                                                        href="{{ route('part', ['id' => 1]) }}">Part title</a>
-                                                    <small>Jan 1, 2019</small>
-                                                </div>
-                                            </div>
-                                            <div class="content">Comment content</div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="header clearfix">
-                                                <div class="avatar avatar-sm">
-                                                    <img src="holder.js/32x32" />
-                                                </div>
-                                                <div class="info">
-                                                    <a class="username" href="#">Administrator</a> on <a class="chapername"
-                                                        href="{{ route('part', ['id' => 1]) }}">Part title</a>
-                                                    <small>Jan 1, 2019</small>
-                                                </div>
-                                            </div>
-                                            <div class="content">Comment content</div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="header clearfix">
-                                                <div class="avatar avatar-sm">
-                                                    <img src="holder.js/32x32" />
-                                                </div>
-                                                <div class="info">
-                                                    <a class="username" href="#">Administrator</a> on <a class="chapername"
-                                                        href="{{ route('part', ['id' => 1]) }}">Part title</a>
-                                                    <small>Jan 1, 2019</small>
-                                                </div>
-                                            </div>
-                                            <div class="content">Comment content</div>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                                 <div class="tab-pane fade" id="parts" role="tabpanel" aria-labelledby="parts-tab">
                                     <div class="list-group list-group-flush list-parts">
-                                        <a href="#" class="list-group-item">Part 1</a>
-                                        <a href="#" class="list-group-item">Part 2</a>
-                                        <a href="#" class="list-group-item">Part 3</a>
+                                        @foreach ($story->chapters as $chapter)
+                                        <a href="{{ route('part', ['id' => $chapter->id, 'slug' => $chapter->slug]) }}" class="list-group-item">{{ $chapter->title }}</a>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -182,38 +140,24 @@
                 <div class="similar-stories card card-simple-header">
                     <h4 class="card-header">@lang('app.you_will_also_like')</h4>
                     <div class="card-body stories">
-                        <div class="story" data-url="{{ route('story', ['id' => 1]) }}">
-                            <a href="#" class="d-flex on-story-preview">
-                                <div class="cover cover-sm">
-                                    <img src="holder.js/80x125" />
+                        @foreach ($recommended_stories as $recommended_story)
+                        <div class="story" data-url="{{ route('story', ['id' => $recommended_story->id, 'slug' => $recommended_story->slug]) }}">
+                            <a href="{{ route('story', ['id' => $recommended_story->id, 'slug' => $recommended_story->slug]) }}" class="d-flex on-story-preview">
+                                <div class="cover cover-sm flex-shrink-0">
+                                    <img src="{{ get_story_cover($recommended_story, 0) }}" />
                                 </div>
                                 <div class="d-flex flex-column">
-                                    <h4 class="story-title">Story title</h4>
-                                    <small class="story-author">@lang('app.by') admin</small>
+                                    <h4 class="story-title">{{ $recommended_story->title }}</h4>
+                                    <small class="story-author">@lang('app.by') {{ $recommended_story->user->login_name }}</small>
                                     <div class="story-stats small mt-auto">
-                                        <span class="view-count"><i class="fa fa-eye"></i> 12K</span>
-                                        <span class="vote-count"><i class="fa fa-star"></i> 1.2K</span>
-                                        <span class="part-count"><i class="fa fa-list-ul"></i> 69</span>
+                                        <span class="view-count"><i class="fa fa-eye"></i> {{ $recommended_story->views }}</span>
+                                        <span class="vote-count"><i class="fa fa-star"></i> {{ $recommended_story->chapters->sum('views') }}</span>
+                                        <span class="part-count"><i class="fa fa-list-ul"></i> {{ $recommended_story->chapters_count }}</span>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                        <div class="story" data-url="{{ route('story', ['id' => 1]) }}">
-                            <a href="#" class="d-flex on-story-preview">
-                                <div class="cover cover-sm">
-                                    <img src="holder.js/80x125" />
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <h4 class="story-title">Story title</h4>
-                                    <small class="story-author">@lang('app.by') admin</small>
-                                    <div class="story-stats small mt-auto">
-                                        <span class="view-count"><i class="fa fa-eye"></i> 12K</span>
-                                        <span class="vote-count"><i class="fa fa-star"></i> 1.2K</span>
-                                        <span class="part-count"><i class="fa fa-list-ul"></i> 69</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

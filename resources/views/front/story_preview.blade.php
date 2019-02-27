@@ -1,6 +1,6 @@
 <div class="row">
     <a class="col-6">
-        <img src="{{ get_story_cover($story, 2) }}" />
+        <img src="{{ get_story_cover($story, 1) }}" />
     </a>
     <div class="col-6 px-3 pt-3 d-flex flex-column">
         <h4 class="story-title">{{ $story->title }}</h4>
