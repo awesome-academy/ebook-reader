@@ -4,12 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Iatstuti\Database\Support\CascadeSoftDeletes;
 
 class Story extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, CascadeSoftDeletes;
+
 
     protected $guarded = ['id'];
+
+    protected $cascadeDeletes = ['chapters'];
 
     protected $casts = [
         'is_mature' => 'boolean',

@@ -6,7 +6,12 @@
         <h1 class="text-success">{{ trans('tran.story_info') }}</h1>
     </div>
     <div>
-        {!! Form::open(['method' => 'POST', 'route' => ['adduser']]) !!}
+        {!! Form::open(['method' => 'POST']) !!}
+        @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+        @endif
         <div class="form-group row">
             {!! Form::label('storyid', trans('tran.id'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-1">
@@ -25,7 +30,7 @@
         <div class="form-group row">
             {!! Form::label('image', trans('tran.image'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-2">
-                <img src="" alt="Image" class="img-thumbnail">
+                <img src="{{ get_story_cover($story, 1) }}" alt="Image" class="img-thumbnail">
             </div>
         </div>
 
@@ -66,15 +71,15 @@
         <div class="form-group row">
             <div class="col-md-1"></div>
             <div class="col-md-2 custom-control custom-switch">
-                {!! Form::checkbox('mature', null, ($story->is_mature > 0) ? null : 'checked', ['id' => 'mature', 'class' => 'custom-control-input']) !!}
+                {!! Form::checkbox('mature', null, ($story->is_mature < 1) ? null : 'checked', ['id' => 'mature', 'class' => 'custom-control-input']) !!}
                 {!! Form::label('mature', trans('tran.mature'), ['class' => 'custom-control-label']) !!}
             </div>
             <div class="col-md-2 custom-control custom-switch">
-                {!! Form::checkbox('status', null, ($story->status > 0) ? null : 'checked', ['id' => 'status', 'class' => 'custom-control-input']) !!}
+                {!! Form::checkbox('status', null, ($story->status < 1) ? null : 'checked', ['id' => 'status', 'class' => 'custom-control-input']) !!}
                 {!! Form::label('status', trans('tran.published'), ['class' => 'custom-control-label']) !!}
             </div>
             <div class="col-md-2 custom-control custom-switch">
-                {!! Form::checkbox('recommended', null, ($story->is_recommended > 0) ? null : 'checked', ['id' => 'recommended', 'class' => 'custom-control-input']) !!}
+                {!! Form::checkbox('recommended', null, ($story->is_recommended < 1) ? null : 'checked', ['id' => 'recommended', 'class' => 'custom-control-input']) !!}
                 {!! Form::label('recommended', trans('tran.recommended'), ['class' => 'custom-control-label']) !!}
             </div>
         </div>
@@ -82,13 +87,17 @@
         <div class="form-group row tag-form">
             {!! Form::label('tag', 'Tag', ['class' => 'col-md-1 col-form-label text-md-right']) !!}
             <div class="col-md-5">
-                <h3>tags</h3>
+                @foreach ($tags as $tag)
+                    <span class="cates">{{ $tag->name }}</span>
+                @endforeach
             </div>
         </div>
         <div class="form-group row">
             {!! Form::label('category', trans('tran.category'), ['class' => 'col-md-1 col-form-label text-md-right']) !!}
-            <div class="col-md-3">
-                {!! Form::textarea('category', $cate, ['class' => 'form-control', 'id' => 'category', 'readonly']) !!}
+            <div class="col-md-5">
+                @foreach ($cates as $cate)
+                    <div class="cates">{{ $cate->name }}</div>
+                @endforeach
             </div>
         </div>
 
@@ -106,8 +115,8 @@
         </div>
         <div class="for-group row mb-0">
             <div class="col offset-md-1">
-                {!! Form::button(trans('tran.save'), ['class' => 'btn btn-primary' ]) !!}
-                {!! Form::button(trans('tran.back'), ['class' => 'btn btn-primary' ]) !!}
+                {!! Form::submit(trans('tran.save'), ['class' => 'btn btn-primary' ]) !!}
+                {!! Form::reset(trans('tran.back'), ['class' => 'btn btn-primary' ]) !!}
             </div>
         </div>
     {!! Form::close() !!}
