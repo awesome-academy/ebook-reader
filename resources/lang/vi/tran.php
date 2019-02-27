@@ -82,5 +82,6 @@ return [
     'delete_user' => 'Bạn có chắc chắn muốn xoá người dùng này?',
     'delete_story' => 'Bạn có chắc chắn muốn xoá truyện này?',
     'published' => 'Phát Hành',
-    'user_confirm' => ''
+    'user_confirm' => '',
+    'chapter_delete_status' => 'Chương đã bị xoá!',
 ];

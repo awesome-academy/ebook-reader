@@ -49,6 +49,7 @@ Route::group(array('namespace' => 'Admin'), function () {
 
     Route::get('admin/story/{id}/detail', 'ChapterController@show')->name('story_detail');
     Route::get('admin/story/chapter/{id}', 'ChapterController@chapterDetail')->name('chapter');
+    Route::get('admin/story/chapter/{id}/delete', 'ChapterController@destroy')->name('delete_chapter');
 });
 
 Route::group(['middleware' => 'locale'], function() {

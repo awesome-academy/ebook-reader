@@ -81,5 +81,6 @@ return [
     'delete_cate' => 'Are you sure delete this meta?',
     'delete_user' => 'Are you sure delete this user?',
     'delete_story' => 'Are you sure delete this story?',
-    'published' => 'Published'
+    'published' => 'Published',
+    'chapter_delete_status' => 'Chapter has been deleted!',
 ];

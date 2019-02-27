@@ -37,7 +37,10 @@
                             <td>{{ ($chapter->status > 0 ) ? 'no' : 'yes' }}</td>
                             <td>{{ $chapter->created_at }}</td>
                             <td>{{ $chapter->updated_at }}</td>
-                            <td><a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i>{{ trans('tran.delete') }}</a></td>
+                            <td><a onclick="return confirm('{{ trans('tran.delete_story') }}')"
+                                href="{{ route('delete_chapter', ['id' => $chapter->id]) }}" class="btn btn-danger"><i
+                                    class="fas fa-trash-alt"></i> {{ trans('tran.delete') }}</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
