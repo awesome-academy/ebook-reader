@@ -6,6 +6,8 @@ interface RepositoryInterface
 {
     public function where($conditions, $operator = null, $value = null);
 
+    public function whereIn($column, array $values);
+
     public function orWhere($conditions, $operator = null, $value = null);
 
     public function orderBy($column, $direction = 'asc');
@@ -41,4 +43,6 @@ interface RepositoryInterface
     public function delete($id);
 
     public function truncate();
+
+    public function toSql();
 }

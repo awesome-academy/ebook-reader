@@ -1,6 +1,6 @@
 <div class="story d-flex" data-url="{{ route('story', ['id' => $story->id, 'slug' => $story->slug]) }}">
     <a href="{{ route('story', ['id' => $story->id, 'slug' => $story->slug]) }}" class="on-story-preview item-cover">
-        <img class="story-thumbnail" src="{{ get_story_cover($story, 1) }}" />
+        <img class="thumbnail thumbnail-md" src="{{ get_story_cover($story, 0) }}" />
     </a>
     <div class="story-details text-truncate">
         <h5 class="story-title text-truncate">

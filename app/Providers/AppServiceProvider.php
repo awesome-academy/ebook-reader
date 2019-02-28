@@ -16,9 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(MetaRepository $meta)
     {
-        if (! (
-            Route::is('login') && Route::is('register')
-            && Route::is('admin/*') && Route::is('password/*') && Route::is('email/*')
+        if (! (app()->runningInConsole() ||
+            Route::is('login') || Route::is('register')
+            && Route::is('admin/*') || Route::is('password/*') || Route::is('email/*')
         )) {
             $categories = $meta->getCategories();
             View::share('categories', $categories);

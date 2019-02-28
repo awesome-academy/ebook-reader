@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\Story::class, function (Faker $faker) {
     return [
-        'title' => $faker->text(100),
+        'title' => $faker->text(63),
         'slug' => $faker->slug,
         'summary' => $faker->paragraph(5),
         'is_recommended' => rand(0, 1),

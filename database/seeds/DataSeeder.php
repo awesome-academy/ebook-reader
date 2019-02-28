@@ -74,6 +74,8 @@ class DataSeeder extends Seeder
                     'user_id' => $users->random(1)->first()->id,
                     'commentable_type' => App\Models\Chapter::class,
                     'commentable_id' => $chapter->id,
+                    'created_at' => now()->subDays(4),
+                    'updated_at' => now()
                 ])->toArray());
             }
         }
