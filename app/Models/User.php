@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Iatstuti\Database\Support\CascadeSoftDeletes;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, CascadeSoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +22,13 @@ class User extends Authenticatable
         'login_name',
         'email',
         'password',
+    ];
+
+    protected $cascadeDeletes = [
+        'stories',
+        'comments',
+        'reportings',
+        'reviewings',
     ];
 
     /**

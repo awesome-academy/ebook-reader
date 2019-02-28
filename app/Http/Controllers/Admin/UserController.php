@@ -8,8 +8,8 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Http\Requests\UserFormRequest;
 use App\Models\User;
 use App\Models\UserProfile;
-use App\Repositories\Eloquents\UserRepository;
-use Illuminate\Support\Facades\Lang;
+use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -51,7 +51,14 @@ class UserController extends Controller
      */
     public function store(UserFormRequest $request)
     {
-        $user = $this->userRepo->store($request);
+        $user = $this->userRepo;
+        $user->create([
+            'full_name' => $request->get('name'),
+            'login_name' => $request->get('loginname'),
+            'email' => $request->get('email'),
+            'password' => Hash::make($request->get('password')),
+            'role' => ($request->get('role') != 'admin') ? 0 : 1,
+        ]);
 
         return redirect('/admin/users/create')->with('status', __('tran.user_create_status'));
     }
@@ -91,9 +98,26 @@ class UserController extends Controller
      */
     public function update($id, UserUpdateRequest $request)
     {
-        $user = $this->userRepo->update($id, $request);
+        $user = $this->userRepo->findOrFail($id);
+        $user->full_name = $request->get('name');
+        $user->login_name = $request->get('loginname');
+        $user->email = $request->get('email');
+        $password = $request->get('password');
+        if ($password != '') {
+            $user->password = Hash::make($password);
+        }
+        $user->role = ($request->get('role') != 'admin') ? 0 : 1;
+        $user->is_banned = ($request->get('ban') != 'no') ? 1 : 0;
+        $user->save();
+        $user->profile()->updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'address' => $request->get('address'),
+                'about' => $request->get('about'),
+            ]
+        );
 
-        return redirect(action('Admin\UsersController@edit', $user->id))->with('status', __('tran.user_update_status'));
+        return redirect()->route('update_user', [$id])->with('status', __('tran.user_update_status'));
     }
 
     /**

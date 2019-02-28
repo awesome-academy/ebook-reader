@@ -7,7 +7,7 @@
         {{ trans('tran.user') }}</div>
     <div class="card-body">
         <div>
-            <a class="btn btn-success" href="{{ route('adduser') }}">{{ trans('tran.add_user') }}</a>
+            <a class="btn btn-success" href="{{ route('add_user') }}">{{ trans('tran.add_user') }}</a>
         </div>
         <hr/>
         @if (session('status'))
@@ -32,14 +32,14 @@
                 @foreach ($users as $user)
                     <tr>
                         <td>{!! $user->id !!}</td>
-                        <td><a href="{{ route('updateuser', ['id' => $user->id]) }}">{!! $user->full_name !!}</a></td>
+                        <td><a href="{{ route('update_user', ['id' => $user->id]) }}">{!! $user->full_name !!}</a></td>
                         <td>{!! $user->login_name !!}</td>
                         <td>{!! $user->email !!}</td>
                         <td>{!! ($user->role > 0) ? 'admin' : 'normal' !!}</td>
                         <td>{!! ($user->is_banned > 0) ? 'yes' : 'no' !!}</td>
                         <td>
-                            <a onclick="return confirm('Are you sure delete this user?')"
-                            href="{!! URL::route('deleteuser', $user->id) !!}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> {{ trans('tran.delete') }}</a>
+                            <a onclick="return confirm('{{ trans('tran.delete_user') }}')"
+                            href="{!! URL::route('delete_user', $user->id) !!}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> {{ trans('tran.delete') }}</a>
                         </td>
                     </tr>
                 @endforeach
