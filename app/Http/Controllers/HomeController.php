@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\StoryRepository;
 use Auth;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
@@ -25,11 +26,6 @@ class HomeController extends Controller
         }
 
         return view('front.home', compact('archived_stories', 'recommended_stories', 'recent_stories'));
-    }
-
-    public function part()
-    {
-        return view('front.part');
     }
 
     private function getArchivedStories()

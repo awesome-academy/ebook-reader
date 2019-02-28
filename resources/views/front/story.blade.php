@@ -12,7 +12,7 @@
                 <div class="story-stats">
                     <span title="@lang('app.view_count', ['count' => $story->views ])">@lang('app.view_count', ['count' => $story->views])</span>
                     <span title="@lang('app.vote_count', ['count' => $story->votes_count])">@lang('app.vote_count', ['count' => $story->votes_count])</span>
-                    <span>@lang('app.part_count', ['count' => $story->chapters_count])</span>
+                    <span>@lang('app.chapter_count', ['count' => $story->chapters_count])</span>
                 </div>
                 <div class="story-author">
                     <a href="#" class="avatar avatar-md pull-left">
@@ -61,7 +61,7 @@
                 <main class="card card-no-top">
                     <div class="card-body">
                         <div class="story-actions">
-                            <a href="{{ route('part', ['id' => $first_chapter->id, 'slug' => $first_chapter->slug]) }}" class="btn btn-primary btn-sm start-reading">@lang('app.read')</a>
+                            <a href="{{ route('read_chapter', ['id' => $first_chapter->id, 'slug' => $first_chapter->slug]) }}" class="btn btn-primary btn-sm start-reading">@lang('app.read')</a>
                             <div class="d-inline-block dropdown button-save">
                                 <button class="btn btn-sm btn-primary" id="saveStory" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">+</button>
@@ -95,8 +95,8 @@
                                         role="tab" aria-controls="comments" aria-selected="true">@lang('app.recent_comments')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="parts-tab" data-toggle="tab" href="#parts" role="tab"
-                                        aria-controls="parts" aria-selected="false">@lang('app.table_of_contents')</a>
+                                    <a class="nav-link" id="chapters-tab" data-toggle="tab" href="#chapters" role="tab"
+                                        aria-controls="chapters" aria-selected="false">@lang('app.table_of_contents')</a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
@@ -110,7 +110,7 @@
                                                 </div>
                                                 <div class="info">
                                                     <a class="username" href="{{ route('user_about', ['user_name' => $comment->user->login_name]) }}">{{ $comment->user->full_name }}</a> on <a class="chapername"
-                                                        href="{{ route('part', ['id' => $comment->chapter->id,  'slug' => $comment->chapter->slug]) }}">{{ $comment->chapter->title }}</a>
+                                                        href="{{ route('read_chapter', ['id' => $comment->chapter->id,  'slug' => $comment->chapter->slug]) }}">{{ $comment->chapter->title }}</a>
                                                     <small>{{ $comment->created_at->format(__('app.d_m_y_format')) }}</small>
                                                 </div>
                                             </div>
@@ -119,10 +119,10 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                                <div class="tab-pane fade" id="parts" role="tabpanel" aria-labelledby="parts-tab">
-                                    <div class="list-group list-group-flush list-parts">
+                                <div class="tab-pane fade" id="chapters" role="tabpanel" aria-labelledby="chapters-tab">
+                                    <div class="list-group list-group-flush list-chapters">
                                         @foreach ($story->chapters as $chapter)
-                                        <a href="{{ route('part', ['id' => $chapter->id, 'slug' => $chapter->slug]) }}" class="list-group-item">{{ $chapter->title }}</a>
+                                        <a href="{{ route('read_chapter', ['id' => $chapter->id, 'slug' => $chapter->slug]) }}" class="list-group-item">{{ $chapter->title }}</a>
                                         @endforeach
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
                                     <div class="story-stats small mt-auto">
                                         <span class="view-count"><i class="fa fa-eye"></i> {{ $recommended_story->views }}</span>
                                         <span class="vote-count"><i class="fa fa-star"></i> {{ $recommended_story->chapters->sum('views') }}</span>
-                                        <span class="part-count"><i class="fa fa-list-ul"></i> {{ $recommended_story->chapters_count }}</span>
+                                        <span class="chapter-count"><i class="fa fa-list-ul"></i> {{ $recommended_story->chapters_count }}</span>
                                     </div>
                                 </div>
                             </a>

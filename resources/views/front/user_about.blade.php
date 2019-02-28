@@ -90,7 +90,7 @@
                                                     class="fa fa-eye"></span> 1.4M</span>
                                             <span class="vote-count" data-toggle="tooltip" data-placement="top" title="71,812 Votes"><span
                                                     class="fa fa-star"></span> 71.8K</span>
-                                            <span class="part-count"><span class="fa fa-list-ul"></span> 92</span>
+                                            <span class="chapter-count"><span class="fa fa-list-ul"></span> 92</span>
                                         </div>
                                     </div>
                                 </div>

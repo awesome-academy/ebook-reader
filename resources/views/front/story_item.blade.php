@@ -12,7 +12,7 @@
         <div class="story-stats">
             <span class="view-count"><i class="fa fa-eye"></i> {{ $story->views }}</span>
             <span class="vote-count"><i class="fa fa-star"></i> {{ $story->chapters->sum('votes_count') }}</span>
-            <span class="part-count"><i class="fa fa-list-ul"></i> {{ $story->chapters_count }}</span>
+            <span class="chapter-count"><i class="fa fa-list-ul"></i> {{ $story->chapters_count }}</span>
         </div>
         <p class="story-summary">{{ str_limit($story->summary, config('app.story_summary_limit'), '...') }}</p>
         <div class="story-tags">

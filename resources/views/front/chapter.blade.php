@@ -8,27 +8,33 @@
                 <button class="btn btn-toc dropdown-toggle" type="button" id="chaptersList" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <span class="cover cover-xxs float-left">
-                        <img src="holder.js/64x100" />
+                        <img src="{{ get_story_cover($story) }}" />
                     </span>
                     <span class="info">
-                        <span class="story-title">Story title</span>
-                        <small>@lang('app.by') Administrator</small>
+                        <h1 class="story-title">{{ $story->title }}</h1>
+                        <small>@lang('app.by') {{ $story->user->full_name }}</small>
                     </span>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="chaptersList">
                     <div class="toc-header text-center">
-                        <h6><a href="#">Story title</a></h6>
+                        <h6>
+                            <a href="{{ route('story', ['id' => $story->id, 'slug' => $story->slug]) }}">
+                                {{ $story->title }}
+                            </a>
+                        </h6>
                         <small>@lang('app.table_of_contents')</small>
                     </div>
-                    <div class="table-of-contents list-group list-group-flush">
-                        <a href="#" class="list-group-item">Chapter title</a>
-                        <a href="#" class="list-group-item active">Chapter title</a>
-                        <a href="#" class="list-group-item">Chapter title</a>
+                    <div class="table-of-contents list-group list-group-flush disable-body-scroll">
+                        @foreach ($story->chapters as $story_chapter)
+                            <a href="{{ route('read_chapter', ['id' => $story_chapter->id, 'slug' => $story_chapter->slug]) }}" class="list-group-item">
+                                {{ $story_chapter->title }}
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
             <div class="top-bar-actions my-auto">
-                <div class="d-inline-block dropdown">
+                <div class="d-inline-block dropdown button-save">
                     <button class="btn btn-primary" id="saveStory" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">+</button>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -49,34 +55,34 @@
             </div>
         </div>
     </div>
-    <div id="part-container">
-        <article class="story-part">
+    <div id="chapter-container">
+        <article class="story-chapter">
             <div class="container">
-                <div class="part-header text-center border-bottom">
-                    <h2>Part title</h2>
+                <div class="chapter-header text-center border-bottom">
+                    <h2>{{ $chapter->title }}</h2>
                     <div class="story-stats">
-                        <span class="count-view"><i class="fa fa-eye"></i> 15K</span>
-                        <span class="count-vote"><i class="fa fa-star"></i> 1.5K</span>
-                        <span class="count-part"><i class="fa fa-comment"></i> <a href="#">15</a></span>
+                        <span class="count-view"><i class="fa fa-eye"></i> {{ $chapter->views }}</span>
+                        <span class="count-vote"><i class="fa fa-star"></i> {{ $chapter->votes_count }}</span>
+                        <span class="count-chapter"><i class="fa fa-comment"></i> <a href="#comments">{{ $chapter->comments_count }}</a></span>
                     </div>
                     <div class="story-author">
                         <a class="avatar avatar-sm mx-auto">
-                            <img src="holder.js/24x24" />
+                            <img src="{{ get_avatar($story->user) }}" />
                         </a>
-                        @lang('app.by') <a href="#">admin</a>
+                        @lang('app.by') <a href="{{ route('user_about', ['user_name' => $story->user->login_name]) }}">{{ $story->user->full_name }}</a>
                     </div>
                 </div>
-                <div class="part-content row">
+                <div class="chapter-content row">
                     <div class="col-md-1 col-lg-2 share-bar">
                         <div class="sticky-top">
                             <div class="title">@lang('app.share')</div>
-                            <a class="social-share" href="#">
+                            <a class="social-share" target="_blank" href="https://www.facebook.com/sharer.php?u={{ $chapter->share_url }}">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x text-facebook"></i>
                                     <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
-                            <a class="social-share" href="#">
+                            <a class="social-share" target="_blank" href="https://twitter.com/intent/tweet?text={{ $story->share_text }}&url={{ $story->share_url }}">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x text-twitter"></i>
                                     <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -99,7 +105,7 @@
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-left">
-                                    <a href="#" class="dropdown-item"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                    <a target="_blank" href="mailto:?subject={{ $story->share_text }}&body={{ $story->share_text }}%0A{{ $story->share_url }}" class="dropdown-item"><i class="fa fa-envelope-o" aria-hidden="true"></i>
                                         @lang('app.share_via_email')</a>
                                     <a href="#" class="dropdown-item"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                                         @lang('app.report_this_story')</a>
@@ -110,23 +116,26 @@
                     <div class="col-md-7 col-lg-6 main-content">
                         <div class="content">
                             <pre>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nihil tempora quae ullam cupiditate autem amet nobis culpa! Officia sint libero id earum mollitia temporibus distinctio ab assumenda sapiente quod?</p>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque voluptate, pariatur, vel saepe tempore deserunt inventore nesciunt sequi molestiae commodi dolorem maxime nemo, accusantium sunt delectus aspernatur eaque numquam quaerat.</p>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus consequatur officiis nam eaque, dolore saepe ut doloremque. Assumenda, aut. Nemo dolorem reprehenderit quod culpa vitae eligendi libero pariatur. Tempora, ex.</p>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem adipisci a in quas inventore placeat iusto enim similique, excepturi, aspernatur nobis obcaecati corrupti possimus error quaerat debitis at temporibus dicta.</p>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit assumenda sint unde? Aspernatur minima illo, officia nihil, eveniet molestias labore cum nam dolore distinctio provident at, soluta exercitationem velit necessitatibus.</p>
+                                {{ $chapter->content }}
                             </pre>
                         </div>
                     </div>
                 </div>
-                <div class="part-footer row">
+                <div class="chapter-footer row">
                     <div class="col-md-7 offset-md-1 col-lg-6 offset-lg-2">
                         <div class="next">
-                            <a class="btn btn-primary btn-lg btn-block text-white">@lang('app.continue_reading_next_part')
+                        @if ($next_chapter)
+                            <a class="btn btn-primary btn-lg btn-block text-white" href="{{ route('read_chapter', ['id' => $next_chapter->id, 'slug' => $next_chapter->slug]) }}">@lang('app.continue_reading_next_chapter')
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                             </a>
+                        @else
+                        <div class="alert alert-warning text-center">
+                            <p>@lang('app.finished_reading')</p>
+                            <strong>{{ $story->title }}</strong>
                         </div>
-                        <div class="part-actions d-flex justify-content-between mt-3">
+                        @endif
+                        </div>
+                        <div class="chapter-actions d-flex justify-content-between mt-3">
                             <div class="actions my-auto">
                                 <div class="d-inline-block dropdown button-save">
                                     <button class="btn" id="saveStory" data-toggle="dropdown" aria-haspopup="true"
@@ -150,13 +159,13 @@
                                 </div>
                             </div>
                             <div class="share">
-                                <a class="social-share" href="#">
+                                <a class="social-share" target="_blank" href="https://www.facebook.com/sharer.php?u={{ $chapter->share_url }}">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x text-facebook"></i>
                                         <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
-                                <a class="social-share" href="#">
+                                <a class="social-share" target="_blank" href="https://twitter.com/intent/tweet?text={{ $chapter->share_text }}&url={{ $chapter->share_url }}">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x text-twitter"></i>
                                         <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -179,7 +188,7 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                        <a target="_blank" href="mailto:?subject={{ $chapter->share_text }}&body={{ $chapter->share_text }}%0A{{ $chapter->share_url }}" class="dropdown-item"><i class="fa fa-envelope-o" aria-hidden="true"></i>
                                             @lang('app.share_via_email')</a>
                                         <a href="#" class="dropdown-item"><i class="fa fa-exclamation-circle"
                                                 aria-hidden="true"></i> @lang('app.report_this_story')</a>
@@ -187,68 +196,74 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="part-comments mt-3" id="comments">
+                        <div class="chapter-comments mt-3" id="comments">
+                            @auth
                             <div class="comment-form d-flex">
                                 <div class="user-avatar">
                                     <div class="avatar avatar-md">
-                                        <img src="holder.js/48x48" />
+                                        <img src="{{ get_avatar(Auth::user()) }}" />
                                     </div>
                                 </div>
                                 <div class="comment-input flex-grow-1">
                                     <textarea name="text" id="comment-text" class="form-control" rows="1"></textarea>
                                 </div>
                             </div>
+                            @endauth
+                            @if ($chapter->comments->count())
                             <div class="collection">
-                                @for ($i = 0; $i < 3; $i++)
+                                @foreach ($chapter->comments as $comment)
                                 <div class="comment">
                                     <div class="col-avatar">
                                         <div class="avatar avatar sm">
-                                            <img src="holder.js/32x32" />
+                                            <img src="{{ get_avatar($comment->user) }}" />
                                         </div>
                                     </div>
                                     <div class="col-main">
                                         <div class="header">
                                             <div class="info">
-                                                <a href="#">admin</a>
-                                                <small>5 seconds ago</small>
+                                                <a href="{{ route('user_about', ['user_name' => $comment->user->login_name]) }}">{{ $comment->user->full_name }}</a>
+                                                <small>{{ $comment->created_at->diffForHumans() }}</small>
                                             </div>
                                             <div class="dropdown">
-                                                <button class="btn" data-toggle="dropdown"><i class="fa fa-ellipsis-h"
-                                                        aria-hidden="true"></i></button>
+                                                <button class="btn" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item"><i class="fa fa-flag text-danger"
-                                                            aria-hidden="true"></i> @lang('app.report_this_comment')</a>
+                                                    <a href="#" class="dropdown-item"><i class="fa fa-flag text-danger" aria-hidden="true"></i> @lang('app.report_this_comment')</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <pre>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui facere aliquam, ea laborum fugiat expedita adipisci ab unde explicabo quia, cupiditate, vel excepturi non ratione iusto eius eum doloremque officiis.</pre>
+                                        <pre>{{ $comment->content }}</pre>
                                         <div class="footer">
                                             <button class="btn btn-sm btn-link">{{ trans_choice('app.replies', 0) }}</button>
                                         </div>
                                     </div>
                                 </div>
-                                @endfor
+                                @endforeach
                             </div>
-                            <button class="btn btn-light btn-block mt-3" id="loadMore">@lang('app.show_more') <i class="fa fa-angle-down"
-                                    aria-hidden="true"></i></button>
+                                @if ($chapter->comments_count > config('app.comments_per_page'))
+                                <button class="btn btn-light btn-block mt-3" id="loadMore">@lang('app.show_more') <i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                                @endif
+                            @else
+                            <p class="py-3">@lang('app.no_comments')</p>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </article>
     </div>
-    <div class="part-recommendations">
+    @if ($recommended_stories->count())
+    <div class="chapter-recommendations">
         <div class="container">
             <div class="h3 py-3">@lang('app.recommendations')</div>
             <div class="collection row">
+                @foreach ($recommended_stories as $recommended_story)
                 <div class="col-md-6">
-                    @include('front.story_item')
+                    @include('front.story_item', ['story' => $recommended_story])
                 </div>
-                <div class="col-md-6">
-                    @include('front.story_item')
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
+    @endif
 </div>
 @stop
