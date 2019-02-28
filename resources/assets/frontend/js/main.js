@@ -34,11 +34,11 @@ $(document).ready(function () {
             $('#storyPreviewModal').modal('show');
         })
         return false;
-    }).on('click', '#new-tab', function() {
+    }).on('click', '#new-tab', function () {
         var $this = $(this),
             $target = $($this.attr('href')),
             story_url = $this.data('url');
-        if (!! $target.text().trim()) {
+        if (!!$target.text().trim()) {
             return;
         }
         $.ajax({
@@ -50,7 +50,7 @@ $(document).ready(function () {
             $target.html(res);
         })
     });
-    $('#logout').on('click', function(e) {
+    $('#logout').on('click', function (e) {
         e.preventDefault();
         $('#logoutForm').submit();
     });

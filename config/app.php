@@ -3,9 +3,13 @@
 return [
     // item per page
     'per_page' => 10,
+    // comments per page
     'comments_per_page' => 5,
+    // random items
     'random_items' => 5,
     'max_random_items' => 25,
+    // recommended item in chapter
+    'chapter_recommended_items' => 2,
     // user avatar
     'default_avatar' => '0.png',
     'avatar_path' => '/upload/avatars/',

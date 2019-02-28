@@ -29,6 +29,11 @@ class BaseRepository implements RepositoryInterface
         return $this->model_path . $this->model_name;
     }
 
+    public function getModel()
+    {
+        return $this->model();
+    }
+
     protected function resetModel()
     {
         $this->makeModel();

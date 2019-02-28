@@ -27,7 +27,10 @@ class StoryRepository extends BaseRepository
                     return $query->select('id')->withCount('votes');
                 },
                 'user',
-            ])->withCount(['metas', 'chapters'])->where('is_recommended', 1)->limit(config('app.max_random_items'))->get();
+            ])->withCount(['metas', 'chapters'])
+            ->where('is_recommended', 1)
+            ->limit(config('app.max_random_items'))
+            ->get();
 
             if ($recommended_stories->count() > config('app.random_items')) {
                 $recommended_stories = $recommended_stories->random(config('app.random_items'));

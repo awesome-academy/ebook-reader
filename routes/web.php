@@ -19,8 +19,8 @@ Route::get('/stories/{slug}', 'MetaController@stories')->name('meta');
 Route::get('/stories/{slug}/new', 'MetaController@newStories')->name('meta_new_stories');
 // Story details
 Route::get('/story/{id}-{slug}', 'StoryController@story')->name('story');
-// Story part
-Route::get('/{id}-{slug}', 'HomeController@part')->name('part');
+// Story chapters
+Route::get('/{id}-{slug}', 'ChapterController@index')->name('read_chapter');
 // profile
 Route::get('/user/{user_name}', 'UserController@index')->name('user_about');
 Route::get('/user/{user_name}/activity', 'UserController@conversations')->name('user_conversations');
@@ -48,7 +48,8 @@ Route::group(array('namespace' => 'Admin'), function () {
     Route::get('admin/reviews', 'StoryController@review')->name('review');
 
     Route::get('admin/story/{id}/detail', 'ChapterController@show')->name('story_detail');
-    Route::get('admin/story/chapter/{id}', 'ChapterController@chapterDetail')->name('chapter');
+    // TODO: dev
+    // Route::get('admin/story/chapter/{id}', 'ChapterController@chapterDetail')->name('chapter');
     Route::get('admin/story/chapter/{id}/delete', 'ChapterController@destroy')->name('delete_chapter');
 });
 
