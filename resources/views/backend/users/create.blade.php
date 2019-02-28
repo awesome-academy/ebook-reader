@@ -5,7 +5,7 @@
     <div class="text-center">
         <h1 class="text-success">{{ trans('tran.add_user') }}</h1>
     </div>
-    {!! Form::open(['method' => 'POST', 'route' => 'adduser']) !!}
+    {!! Form::open(['method' => 'POST', 'route' => 'add_user']) !!}
     @if (session('status'))
     <div class="alert alert-success">
         {{ session('status') }}
