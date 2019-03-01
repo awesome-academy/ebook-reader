@@ -24,7 +24,7 @@ class StoryRepository extends BaseRepository
             $recommended_stories = $this->with([
                 'metas',
                 'chapters' => function ($query) {
-                    return $query->select('id')->withCount('votes');
+                    return $query->select('id', 'story_id')->withCount('votes');
                 },
                 'user',
             ])->withCount(['metas', 'chapters'])
@@ -49,7 +49,7 @@ class StoryRepository extends BaseRepository
             $recent_stories = $this->with([
                 'metas',
                 'chapters' => function ($query) {
-                    return $query->select('id')->withCount('votes');
+                    return $query->select('id', 'story_id')->withCount('votes');
                 },
                 'user',
             ])->withCount(['metas', 'chapters'])

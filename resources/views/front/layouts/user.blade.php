@@ -19,7 +19,7 @@
             </div>
             <div class="col-4 scroll-to-element" data-id="profile-lists">
                 <p>1</p>
-                <p>{{ trans_choice('app.reading_lists', 0) }}</p>
+                <p>{{ trans_choice('app.reading_lists_choice', 0) }}</p>
             </div>
             <div class="col-4 on-followers" data-toggle="tooltip" data-placement="top" title="6,143 Followers">
                 <p class="followers-count">6.1K</p>

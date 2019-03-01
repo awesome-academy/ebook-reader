@@ -28,7 +28,7 @@ class StoryController extends Controller
         $story = $this->story->with([
             'metas',
             'chapters' => function ($query) {
-                return $query->select('id')->withCount('votes');
+                return $query->select('id', 'story_id')->withCount('votes');
             },
             'user',
         ])->withCount(['metas', 'chapters'])->findOrFail($id);

@@ -40,7 +40,7 @@ class HomeController extends Controller
                 },
                 'saveLists.stories.metas',
                 'saveLists.stories.chapters' => function ($query) {
-                    return $query->select('id')->withCount('votes');
+                    return $query->select('id', 'story_id')->withCount('votes');
                 },
                 'saveLists.stories.user',
             ]);

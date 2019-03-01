@@ -21,6 +21,12 @@ Route::get('/stories/{slug}/new', 'MetaController@newStories')->name('meta_new_s
 Route::get('/story/{id}-{slug}', 'StoryController@story')->name('story');
 // Story chapters
 Route::get('/{id}-{slug}', 'ChapterController@index')->name('read_chapter');
+// Saved stories
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/library', 'LibraryController@library')->name('library');
+    Route::get('/archive', 'LibraryController@archive')->name('archive');
+    Route::get('/list', 'LibraryController@list')->name('list');
+});
 // profile
 Route::get('/user/{user_name}', 'UserController@index')->name('user_about');
 Route::get('/user/{user_name}/activity', 'UserController@conversations')->name('user_conversations');
@@ -48,8 +54,7 @@ Route::group(array('namespace' => 'Admin'), function () {
     Route::get('admin/reviews', 'StoryController@review')->name('review');
 
     Route::get('admin/story/{id}/detail', 'ChapterController@show')->name('story_detail');
-    // TODO: dev
-    // Route::get('admin/story/chapter/{id}', 'ChapterController@chapterDetail')->name('chapter');
+    Route::get('admin/story/chapter/{id}', 'ChapterController@chapterDetail')->name('chapter');
     Route::get('admin/story/chapter/{id}/delete', 'ChapterController@destroy')->name('delete_chapter');
 });
 
