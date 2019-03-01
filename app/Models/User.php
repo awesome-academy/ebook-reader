@@ -56,7 +56,7 @@ class User extends Authenticatable
 
     public function archives()
     {
-        return $this->belongsToMany('App\Models\Story', 'archives', 'story_id', 'user_id');
+        return $this->belongsToMany('App\Models\Story', 'archives', 'user_id', 'story_id');
     }
 
     public function comments()

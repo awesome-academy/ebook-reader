@@ -1282,3 +1282,42 @@ ul#footer-items {
 .user-card footer div h5 .small {
     font-size: 12px
 }
+
+/* library */
+.library .collection .row .col {
+    max-width: 16%;
+}
+.library .collection .row .col .cover {
+    position: relative;
+    margin-bottom: 0.5rem
+}
+.library .collection .row .col .cover .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+    display: none;
+}
+.library .collection .row .col .cover:hover .overlay {
+    display: block;
+}
+.library .collection .col .overlay .quick-control .fa {
+    font-size: 1.5rem
+}
+.library .collection .col .overlay .btn {
+    font-weight: bold;
+}
+.library .collection .col .content .info div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.library .collection .col .content .info strong {
+    font-weight: 600;
+}
+.library .collection .col .content .info small {
+    display: block;
+    color: #6f6f6f
+}

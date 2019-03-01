@@ -105,7 +105,7 @@
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-left">
-                                    <a target="_blank" href="mailto:?subject={{ $story->share_text }}&body={{ $story->share_text }}%0A{{ $story->share_url }}" class="dropdown-item"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                    <a target="_blank" href="mailto:?subject={{ $chapter->share_text }}&body={{ $chapter->share_text }}%0A{{ $chapter->share_url }}" class="dropdown-item"><i class="fa fa-envelope-o" aria-hidden="true"></i>
                                         @lang('app.share_via_email')</a>
                                     <a href="#" class="dropdown-item"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                                         @lang('app.report_this_story')</a>

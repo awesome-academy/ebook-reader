@@ -54,10 +54,4 @@ $(document).ready(function () {
         e.preventDefault();
         $('#logoutForm').submit();
     });
-    // TODO: dev
-    $.ajaxSetup({
-        complete: function () {
-            Holder.run();
-        }
-    })
 });

@@ -54,6 +54,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="{{ route('user_about', ['user_name' => Auth::user()->login_name]) }}" class="dropdown-item">@lang('app.my_profile')</a>
+                            <a href="{{ route('library') }}" class="dropdown-item">@lang('app.library')</a>
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item" id="logout">@lang('app.logout')</a>
                             {!! Form::open(['url' => route('logout'), 'method' => 'post', 'id' => 'logoutForm', 'hidden']) !!}

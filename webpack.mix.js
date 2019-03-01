@@ -20,9 +20,7 @@ mix.copyDirectory('node_modules/jquery/dist', 'public/vendor/jquery')
     .copy('resources/assets/frontend/css/simple.css', 'public/css/simple.css')
     .copyDirectory('resources/assets/frontend/images/avatars', 'public/upload/avatars')
     .copyDirectory('resources/assets/frontend/images/user_covers', 'public/upload/user_covers')
-    .copyDirectory('resources/assets/frontend/images/story_covers', 'public/upload/story_covers')
-    // TODO: dev
-    .copy('node_modules/holderjs', 'public/vendor/holderjs');
+    .copyDirectory('resources/assets/frontend/images/story_covers', 'public/upload/story_covers');
 
 mix.copyDirectory('vendor/bower_components', 'public/bower_components');
 mix.js('resources/assets/custom.js', 'public/js');
