@@ -60,10 +60,10 @@
                         <td>{{ $category->id }}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->type }}</td>
-                        <td><a class="btn btn-secondary" href="{!! URL::route('updatecate', $category->id) !!}"><i
+                        <td><a class="btn btn-secondary" href="{!! URL::route('update_cate', $category->id) !!}"><i
                                     class="fas fa-pen"></i>{{ trans('tran.edit') }}</a>
                             <a onclick="return confirm('{{ trans('tran.delete_cate') }}')"
-                                href="{{ route('deletecate',['id' => $category->id]) }}" class="btn btn-danger"><i
+                                href="{{ route('delete_cate',['id' => $category->id]) }}" class="btn btn-danger"><i
                                     class="fas fa-trash-alt"></i> {{ trans('tran.delete') }}</a>
                     </tr>
                     @endforeach

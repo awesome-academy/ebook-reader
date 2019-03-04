@@ -4,25 +4,23 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Meta;
 use App\Http\Requests\CategoryFormRequest;
-use App\Repositories\Eloquents\CategoryRepository;
+use App\Repositories\MetaRepository;
 use Illuminate\Support\Facades\Lang;
 
 class CategoryController extends Controller
 {
     protected $cateRepo;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(MetaRepository $meta)
     {
-        $this->cateRepo = $categoryRepository;
+        $this->cateRepo = $meta;
     }
 
     public function index()
     {
         $cates = $this->cateRepo->all();
-        $cate = new Meta();
-
+        $cate = $this->cateRepo->makeModel();
         return view('backend.categories', compact('cates', 'cate'));
     }
 
@@ -36,7 +34,12 @@ class CategoryController extends Controller
 
     public function store(CategoryFormRequest $request)
     {
-        $this->cateRepo->store($request);
+        $meta = $this->cateRepo;
+        $meta->create([
+            'name' => $request->get('meta_name'),
+            'slug' => $request->get('meta_name'),
+            'type' => ($request->get('meta_type') != 'category') ? 'category' : 'tag',
+        ]);
         
         return redirect('/admin/categories')->with('status', __('tran.meta_create_status'));
     }
@@ -48,7 +51,12 @@ class CategoryController extends Controller
 
     public function update($id, CategoryFormRequest $request)
     {
-        $this->cateRepo->update($id, $request);
+        $meta = $this->cateRepo->findOrFail($id);
+        $meta->update([
+            'name' => $request->get('meta_name'),
+            'slug' => $request->get('meta_name'),
+            'type' => $request->get('meta_type'),
+        ]);
 
         return redirect('/admin/categories')->with('status', __('tran.meta_update_status'));
     }

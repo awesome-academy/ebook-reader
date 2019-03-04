@@ -5,7 +5,7 @@
     <div class="text-center">
         <h1>{{ trans('tran.edit_user') }}</h1>
     </div>
-    {!! Form::open(['method' => 'POST']) !!}
+    {!! Form::open(['method' => 'POST', 'files' => true]) !!}
         @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
@@ -33,18 +33,36 @@
             </span>
             @endif
         </div>
-        <div class="form-group row">
+        <div class="form-group row"> 
             {!! Form::label('avatar', trans('tran.avatar'), ['class' => 'col-md-4 col-form-label text-md-right']) !!}
             <div class="col-md-1">
-                <img src="{{ $user->avatar }}" alt="Image" class="img-thumbnail">
-                {!! Form::file('avatar') !!}
+                <img src="{{ get_avatar($user, 1) }}" alt="Image" class="img-thumbnail" id="avatar"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col offset-md-4">
+                {!! Form::file('avatar_file', ['id' => 'avatar_file']) !!}
+                @if ($errors->has('avatar_file'))
+                <span class="invalid-feedback d-block" role="alert">
+                    <strong>{{ $errors->first('avatar_file') }}</strong>
+                </span>
+                @endif
             </div>
         </div>
         <div class="form-group row">
             {!! Form::label('cover-img', trans('tran.cover_img'), ['class' => 'col-md-4 col-form-label text-md-right']) !!}
             <div class="col-md-2">
-                <img src="{{ ($user->profile == null) ? '' : $user->profile->cover_image }}" alt="Image" class="img-thumbnail">
-                {!! Form::file('cover_image') !!}
+                <img src="{{ get_user_cover($user, 0) }}" alt="Image" class="img-thumbnail" id="cover_image">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col offset-md-4">
+                {!! Form::file('cover_image', ['id' => 'cover_image']) !!}
+                @if ($errors->has('cover_image'))
+                <span class="invalid-feedback d-block" role="alert">
+                    <strong>{{ $errors->first('cover_image') }}</strong>
+                </span>
+                @endif
             </div>
         </div>
         <div class="form-group row">
@@ -115,7 +133,7 @@
             <div class="col offset-md-4">
                 {!! Form::submit(trans('tran.update'), ['class' => 'btn btn-primary' ]) !!}
                 {!! Form::reset(trans('tran.cancel'), ['class' => 'btn btn-secondary' ]) !!}
-            </div>                
+            </div>
         </div>
     {!! Form::close() !!}
 </div>
