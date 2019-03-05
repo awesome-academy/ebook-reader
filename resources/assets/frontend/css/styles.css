@@ -108,6 +108,11 @@ pre {
     height: 150px;
 }
 
+.cover.cover-xs {
+    width: 64px;
+    height: 100px;
+}
+
 .cover.cover-xxs {
     width: 28px;
     height: 43px;
@@ -1320,4 +1325,7 @@ ul#footer-items {
 .library .collection .col .content .info small {
     display: block;
     color: #6f6f6f
+}
+.library .collection .info h4 a {
+    color: #222
 }

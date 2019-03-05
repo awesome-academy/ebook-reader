@@ -15,7 +15,7 @@
                     <a class="nav-link{{ Route::is('archive') ? ' active' : '' }}" href="{{ route('archive') }}">@lang('app.archive')</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{{ Route::is('list') ? ' active' : '' }}" href="{{ route('list') }}">@lang('app.reading_lists')</a>
+                    <a class="nav-link{{ Route::is('lists') ? ' active' : '' }}" href="{{ route('lists') }}">@lang('app.reading_lists')</a>
                 </li>
             </ul>
         </div>
