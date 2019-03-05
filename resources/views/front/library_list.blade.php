@@ -14,17 +14,18 @@
             @include('front.items.reading_list', ['list' => $list])
             @endforeach
         </div>
-        @if ($lists->hasPages())
-        <div class="row mt-3">
-            <div class="col-sm-6 offset-sm-3">
-                <button class="btn btn-light btn-block on-show-more" data-url="{{ $lists->nextPageUrl() }}" data-target="#readingLists">
-                    @lang('app.show_more')
-                    <i class="fa fa-angle-down"></i>
-                </button>
-        </div>
-        @endif
     @else
+        <div class="collection row" id="readingLists"></div>
         <p class="py-3">@lang('app.no_list')</p>
+    @endif
+    @if ($lists->hasPages())
+    <div class="row mt-3">
+        <div class="col-sm-6 offset-sm-3">
+            <button class="btn btn-light btn-block on-show-more" data-url="{{ $lists->nextPageUrl() }}" data-target="#readingLists">
+                @lang('app.show_more')
+                <i class="fa fa-angle-down"></i>
+            </button>
+    </div>
     @endif
 @endsection
 

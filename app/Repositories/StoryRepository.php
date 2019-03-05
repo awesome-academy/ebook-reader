@@ -52,7 +52,7 @@ class StoryRepository extends BaseRepository
                     return $query->select('id', 'story_id')->withCount('votes');
                 },
                 'user',
-            ])->withCount(['metas', 'chapters'])
+            ])->withCount('chapters')
             ->orderBy('updated_at', 'desc')
             ->limit(config('app.max_random_items'))
             ->get();

@@ -21,6 +21,7 @@ Route::get('/stories/{slug}/new', 'MetaController@newStories')->name('meta_new_s
 Route::get('/story/{id}-{slug}', 'StoryController@story')->name('story');
 // Story chapters
 Route::get('/{id}-{slug}', 'ChapterController@index')->name('read_chapter');
+Route::get('/chapter/{id}/comments', 'ChapterController@comments')->name('chapter_comments');
 // Saved stories
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/library', 'LibraryController@library')->name('library');

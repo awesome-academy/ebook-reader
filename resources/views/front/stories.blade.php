@@ -19,13 +19,21 @@
         <div class="stories">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="hot" role="tabpanel" aria-labelledby="hot-tab">
-                    <div class="row">
+                    <div class="row" id="metaStories">
                     @foreach ($meta->stories as $story)
-                    <div class="col-md-6 col-story">
-                        @include('front.story_item', ['story' => $story])
-                    </div>
+                    @include('front.items.meta_story', ['story' => $story])
                     @endforeach
                     </div>
+                    @if ($meta->stories->hasPages())
+                    <div class="row">
+                        <div class="col-sm-6 offset-sm-3">
+                            <button class="btn btn-light btn-block on-show-more" data-url="{{ $meta->stories->nextPageUrl() }}" data-target="#metaStories">
+                                @lang('app.show_more')
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    @endif
                 </div>
                 <div class="tab-pane fade" id="new" role="tabpanel" aria-labelledby="new-tab">
                 </div>

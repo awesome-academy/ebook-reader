@@ -183,8 +183,8 @@ time {
 }
 
 .thumbnail.thumbnail-md {
-    width: 144px!important;
-    height: 225px!important;
+    width: 144px !important;
+    height: 225px !important;
 }
 
 /* helpers */
@@ -760,7 +760,7 @@ ul#footer-items {
 #top-bar .top-bar-story .dropdown-menu .toc-header {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    border-bottom: 1px solid rgba(0,0,0,.125)
+    border-bottom: 1px solid rgba(0, 0, 0, .125)
 }
 
 #top-bar .top-bar-story .dropdown-menu .toc-header h6 {
@@ -788,8 +788,8 @@ ul#footer-items {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-#top-bar .top-bar-story .dropdown-menu .table-of-contents .list-group-item:first-child
-{
+
+#top-bar .top-bar-story .dropdown-menu .table-of-contents .list-group-item:first-child {
     border-top: none
 }
 
@@ -1292,40 +1292,57 @@ ul#footer-items {
 .library .collection .row .col {
     max-width: 16%;
 }
+
 .library .collection .row .col .cover {
     position: relative;
     margin-bottom: 0.5rem
 }
+
 .library .collection .row .col .cover .overlay {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0, 0, 0, .5);
     display: none;
 }
+
 .library .collection .row .col .cover:hover .overlay {
     display: block;
 }
+
 .library .collection .col .overlay .quick-control .fa {
     font-size: 1.5rem
 }
+
 .library .collection .col .overlay .btn {
     font-weight: bold;
 }
+
 .library .collection .col .content .info div {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .library .collection .col .content .info strong {
     font-weight: 600;
 }
+
 .library .collection .col .content .info small {
     display: block;
     color: #6f6f6f
 }
+
 .library .collection .info h4 a {
     color: #222
+}
+
+#readingLists~p {
+    display: none
+}
+
+#readingLists:empty~p {
+    display: block
 }

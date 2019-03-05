@@ -30,7 +30,7 @@ class SaveListPolicy
      */
     public function create(User $user)
     {
-        return false;
+        return (!! $user->email_verified_at);
     }
 
     /**

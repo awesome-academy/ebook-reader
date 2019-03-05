@@ -10,7 +10,7 @@
         <div class="story-uploader"><a href="{{ route('user_about', ['user_name' => $story->user->login_name]) }}">@lang('app.by') {{ $story->user->full_name }}</a></div>
         @endif
         <div class="story-stats">
-            <span class="view-count"><i class="fa fa-eye"></i> {{ $story->views }}</span>
+            <span class="view-count"><i class="fa fa-eye"></i> {{ $story->chapters->sum('views') }}</span>
             <span class="vote-count"><i class="fa fa-star"></i> {{ $story->chapters->sum('votes_count') }}</span>
             <span class="chapter-count"><i class="fa fa-list-ul"></i> {{ $story->chapters_count }}</span>
         </div>
@@ -21,9 +21,9 @@
                 <li><a href="{{ route('meta', ['slug' => $meta->slug]) }}">{{ $meta->name }}</a></li>
                 @endforeach
             </ul>
-            @if ($story->metas_count > config('app.shown_meta'))
+            @if ($story->metas->count() > config('app.shown_meta'))
             <span class="on-story-preview num-not-show">
-                +@lang('app.more_tag', ['count' => ($story->metas_count - config('app.shown_meta'))])
+                +@lang('app.more_tag', ['count' => ($story->metas->count() - config('app.shown_meta'))])
             </span>
             @endif
         </div>

@@ -71,6 +71,14 @@ class LibraryController extends Controller
             $list = $this->saveList->create($list_data);
             $list->stories = collect();
             $list->stories_count = 0;
+            $list->share_url = urlencode(route('list', ['id' => $list->id]));
+            $list->share_text = urlencode(trans(
+                'app.a_reading_list_by',
+                [
+                    'list_name' => $list->name,
+                    'user_name' => Auth::user()->login_name,
+                ]
+            ));
 
             if ($request->query('source') === 'library') {
                 $data = view('front.items.reading_list', ['list' => $list])->render();
@@ -98,6 +106,6 @@ class LibraryController extends Controller
             $message = trans('app.permission_denied');
         }
 
-        return response()->json(compact('success', 'data'));
+        return response()->json(compact('success', 'message'));
     }
 }

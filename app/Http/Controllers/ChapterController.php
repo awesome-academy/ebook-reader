@@ -46,4 +46,22 @@ class ChapterController extends Controller
 
         return view('front.chapter', compact('chapter', 'story', 'next_chapter', 'recommended_stories'));
     }
+
+    public function comments($id, Request $request)
+    {
+        if ($request->ajax()) {
+            $chapter = $this->chapter->findOrFail($id);
+            $comments = $this->comment->getComments($chapter->id, $this->chapter->getModel());
+
+            $content = '';
+            foreach ($comments as $comment) {
+                $content .= view('front.items.comment', ['comment' => $comment])->render();
+            }
+            $comments = $comments->toArray();
+            unset($comments['data']);
+            $comments['content'] = $content;
+
+            return response()->json($comments);
+        }
+    }
 }
