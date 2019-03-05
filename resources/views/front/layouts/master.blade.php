@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scale=0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>@yield('title', config('app.name'))</title>
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendor/owl.carousel/assets/owl.carousel.min.css') }}" />
@@ -105,11 +106,14 @@
     <script>
         var ebook = window.ebook = (ebook || {});
         ebook.base_url = '{{ url('/') }}';
+        ebook.lang = {
+            unknow_error: '{{ __('app.unknow_error') }}',
+        };
     </script>
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/owl.carousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('vendor/holderjs/holder.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
 

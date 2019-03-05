@@ -25,7 +25,11 @@ Route::get('/{id}-{slug}', 'ChapterController@index')->name('read_chapter');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/library', 'LibraryController@library')->name('library');
     Route::get('/archive', 'LibraryController@archive')->name('archive');
-    Route::get('/list', 'LibraryController@list')->name('list');
+    Route::get('/lists', 'LibraryController@lists')->name('lists');
+    Route::post('/lists', 'LibraryController@createList')->name('create_list')->middleware('verified');
+    Route::get('/lists/{list}', 'LibraryController@list')->name('list');
+    Route::post('/lists/{list}', 'LibraryController@update');
+    Route::delete('/lists/{list}', 'LibraryController@delete')->name('delete_list');
 });
 // profile
 Route::get('/user/{user_name}', 'UserController@index')->name('user_about');
