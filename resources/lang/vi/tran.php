@@ -84,4 +84,6 @@ return [
     'published' => 'Phát Hành',
     'user_confirm' => '',
     'chapter_delete_status' => 'Chương đã bị xoá!',
+    'comment_delete_status' => 'Bình luận đã bị xoá!',
+    'delete_comment' => 'Bạn có chắc muốn xoá bình luận này?',
 ];

@@ -60,6 +60,11 @@ Route::group(array('namespace' => 'Admin'), function () {
     Route::get('admin/story/{id}/detail', 'ChapterController@show')->name('story_detail');
     Route::get('admin/story/chapter/{id}', 'ChapterController@chapterDetail')->name('chapter');
     Route::get('admin/story/chapter/{id}/delete', 'ChapterController@destroy')->name('delete_chapter');
+
+    Route::get('admin/comment/story', 'CommentController@storyComment')->name('story_comment');
+    Route::get('admin/comment/review', 'CommentController@reviewComment')->name('review_comment');
+    Route::get('admin/comment/{id}/reply', 'CommentController@replyComment')->name('reply_comment');
+    Route::get('admin/comment/delete/{id}', 'CommentController@destroy')->name('delete_comment');
 });
 
 Route::group(['middleware' => 'locale'], function() {

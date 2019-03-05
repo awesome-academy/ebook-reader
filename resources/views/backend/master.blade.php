@@ -129,8 +129,8 @@
                     <span>{{ trans('tran.comment') }}</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <a class="dropdown-item" href="#">{{ trans('tran.story_comment') }}</a>
-                    <a class="dropdown-item" href="#">{{ trans('tran.review_comment') }}</a>
+                    <a class="dropdown-item" href="{{ route('story_comment') }}">{{ trans('tran.story_comment') }}</a>
+                    <a class="dropdown-item" href="{{ route('review_comment') }}">{{ trans('tran.review_comment') }}</a>
                 </div>
             </li>
             <li class="nav-item">
