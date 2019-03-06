@@ -49,7 +49,7 @@
                 <div class="card-body">
                     <div id="works-item">
                         @for ($i = 0; $i < 2; $i++)
-                            @include('front.story_item', ['in_profile'=> true])
+                            @include('front.items.story', ['in_profile'=> true])
                         @endfor
                     </div>
                     <button class="btn btn-light btn-block mt-3">@lang('app.show_more') <i class="fa fa-angle-down"></i></button>

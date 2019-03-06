@@ -68,9 +68,9 @@ $(document).ready(function () {
                 }
                 $input.val('');
                 $this.closest('.modal').modal('hide');
-                ebook.showNotify(res.data.message, 'success')
+                ebook.showNotify(res.message, 'success')
             } else {
-                ebook.showNotify(res.data.message, 'success')
+                ebook.showNotify(res.message, 'success')
             }
         }).fail(function (res) {
             if (res.status === 422) {

@@ -8,6 +8,7 @@ class CommentRepository extends BaseRepository
     public function getComments($id, $model)
     {
         $comments = $this->with('user')
+            ->withCount('replies')
             ->where('commentable_type', $model)
             ->where('commentable_id', $id)
             ->orderBy('updated_at', 'desc')

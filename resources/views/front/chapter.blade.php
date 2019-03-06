@@ -26,7 +26,7 @@
                     </div>
                     <div class="table-of-contents list-group list-group-flush disable-body-scroll">
                         @foreach ($story->chapters as $story_chapter)
-                            <a href="{{ route('read_chapter', ['id' => $story_chapter->id, 'slug' => $story_chapter->slug]) }}" class="list-group-item">
+                            <a href="{{ route('read_chapter', ['id' => $story_chapter->id, 'slug' => $story_chapter->slug]) }}" class="list-group-item{{ $story_chapter->id == request()->route('id') ? ' active' : '' }}">
                                 {{ $story_chapter->title }}
                             </a>
                         @endforeach
@@ -210,37 +210,16 @@
                             </div>
                             @endauth
                             @if ($chapter->comments->count())
-                            <div class="collection">
+                            <div class="collection" id="chapterComments">
                                 @foreach ($chapter->comments as $comment)
-                                <div class="comment">
-                                    <div class="col-avatar">
-                                        <div class="avatar avatar sm">
-                                            <img src="{{ get_avatar($comment->user) }}" />
-                                        </div>
-                                    </div>
-                                    <div class="col-main">
-                                        <div class="header">
-                                            <div class="info">
-                                                <a href="{{ route('user_about', ['user_name' => $comment->user->login_name]) }}">{{ $comment->user->full_name }}</a>
-                                                <small>{{ $comment->created_at->diffForHumans() }}</small>
-                                            </div>
-                                            <div class="dropdown">
-                                                <button class="btn" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item"><i class="fa fa-flag text-danger" aria-hidden="true"></i> @lang('app.report_this_comment')</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <pre>{{ $comment->content }}</pre>
-                                        <div class="footer">
-                                            <button class="btn btn-sm btn-link">{{ trans_choice('app.replies', 0) }}</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('front.items.comment', ['comment' => $comment])
                                 @endforeach
                             </div>
-                                @if ($chapter->comments_count > config('app.comments_per_page'))
-                                <button class="btn btn-light btn-block mt-3" id="loadMore">@lang('app.show_more') <i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                                @if ($chapter->comments->hasPages())
+                                <button class="btn btn-light btn-block mt-3 on-show-more" data-url="{{ route('chapter_comments', ['id' => $chapter->id, 'page' => $chapter->comments->currentPage() + 1]) }}" data-target="#chapterComments">
+                                    @lang('app.show_more')
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i
+                                </button>
                                 @endif
                             @else
                             <p class="py-3">@lang('app.no_comments')</p>
@@ -258,7 +237,7 @@
             <div class="collection row">
                 @foreach ($recommended_stories as $recommended_story)
                 <div class="col-md-6">
-                    @include('front.story_item', ['story' => $recommended_story])
+                    @include('front.items.story', ['story' => $recommended_story])
                 </div>
                 @endforeach
             </div>

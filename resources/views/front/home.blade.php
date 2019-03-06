@@ -11,7 +11,7 @@
             </div>
             <div class="owl-carousel">
                 @foreach ($archived_stories as $story)
-                    @include('front.story_item', ['story' => $story])
+                    @include('front.items.story', ['story' => $story])
                 @endforeach
             </div>
         </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="owl-carousel">
                 @foreach ($recommended_stories as $story)
-                    @include('front.story_item', ['story' => $story])
+                    @include('front.items.story', ['story' => $story])
                 @endforeach
             </div>
         </div>
@@ -37,7 +37,7 @@
             </div>
             <div class="owl-carousel">
                 @foreach ($recent_stories as $story)
-                    @include('front.story_item', ['story' => $story])
+                    @include('front.items.story', ['story' => $story])
                 @endforeach
             </div>
         </div>
