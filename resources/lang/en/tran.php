@@ -83,4 +83,6 @@ return [
     'delete_story' => 'Are you sure delete this story?',
     'published' => 'Published',
     'chapter_delete_status' => 'Chapter has been deleted!',
+    'comment_delete_status' => 'Comment has been deleted!',
+    'delete_comment' => 'Are you sure delete this meta?',
 ];

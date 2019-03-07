@@ -27,7 +27,7 @@
                 <div class="mr-5">11 {{ trans('tran.story') }}</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="{{ route('story_admin') }}">
-                <span class="float-left">trans('tran.view_detail')</span>
+                <span class="float-left">{{ trans('tran.view_detail') }}</span>
                 <span class="float-right">
                     <i class="fas fa-angle-right"></i>
                 </span>
@@ -43,7 +43,7 @@
                 <div class="mr-5">123 {{ trans('tran.comment') }}</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="{{ route('story_comment') }}">
-                <span class="float-left">trans('tran.view_detail')</span>
+                <span class="float-left">{{ trans('tran.view_detail') }}</span>
                 <span class="float-right">
                     <i class="fas fa-angle-right"></i>
                 </span>
@@ -59,7 +59,7 @@
                 <div class="mr-5">13 {{ trans('tran.report') }}</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="{{ route('report') }}">
-                <span class="float-left">trans('tran.view_detail')</span>
+                <span class="float-left">{{ trans('tran.view_detail') }}</span>
                 <span class="float-right">
                     <i class="fas fa-angle-right"></i>
                 </span>
@@ -75,7 +75,7 @@
                 <div class="mr-5">26 {{ trans('tran.meta') }}</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="{{ route('categories') }}">
-                <span class="float-left">trans('tran.view_detail')</span>
+                <span class="float-left">{{ trans('tran.view_detail') }}</span>
                 <span class="float-right">
                     <i class="fas fa-angle-right"></i>
                 </span>
@@ -91,7 +91,7 @@
                 <div class="mr-5">11 {{ trans('tran.banner') }}</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">trans('tran.view_detail')</span>
+                <span class="float-left">{{ trans('tran.view_detail') }}</span>
                 <span class="float-right">
                     <i class="fas fa-angle-right"></i>
                 </span>
@@ -107,7 +107,7 @@
                 <div class="mr-5">12 {{ trans('tran.config') }}</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">trans('tran.view_detail')</span>
+                <span class="float-left">{{ trans('tran.view_detail') }}</span>
                 <span class="float-right">
                     <i class="fas fa-angle-right"></i>
                 </span>
@@ -123,20 +123,12 @@
                 <div class="mr-5">10 {{ trans('tran.review') }}</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="{{ route('review') }}">
-                <span class="float-left">trans('tran.view_detail')</span>
+                <span class="float-left">{{ trans('tran.view_detail') }}</span>
                 <span class="float-right">
                     <i class="fas fa-angle-right"></i>
                 </span>
             </a>
         </div>
     </div>
-</div>
-
-{!! Form::label('email', 'ckeditor') !!}
-<div>
-    {!! Form::textarea('email', '', ['class' => 'form-control ckeditor', 'id' => 'demo']) !!}
-    <script>
-        ckeditor.replace('demo');
-    </script>
 </div>
 @endsection
