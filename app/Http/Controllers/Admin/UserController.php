@@ -118,7 +118,7 @@ class UserController extends Controller
                 $image_resize = Image::make($file->getRealPath());
                 $image_resize->resize($size, $size);
                 $name = $fileName . '_' . $size . '.' . $file->getClientOriginalExtension();
-                $image_resize->save('.' . config('app.avatar_path') . $name);
+                $image_resize->save(config('app.avatar_path') . $name);
                 $i ++;
             }
         }
@@ -132,7 +132,7 @@ class UserController extends Controller
                 $image_resize = Image::make($file->getRealPath());
                 $image_resize->resize(config('app.user_cover_sizes')[$i][0], config('app.user_cover_sizes')[$i][1]);
                 $name = $fileName . '_' . config('app.user_cover_sizes')[$i][0] . 'x'. config('app.user_cover_sizes')[$i][1] . '.' . $file->getClientOriginalExtension();
-                $image_resize->save('.' . config('app.user_cover_path') . $name);
+                $image_resize->save(config('app.user_cover_path') . $name);
                 $i ++;
             }
         }

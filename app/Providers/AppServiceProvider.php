@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Repositories\MetaRepository;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Route;
+use Route, Request;
 
 class AppServiceProvider extends ServiceProvider
 {

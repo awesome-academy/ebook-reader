@@ -48,6 +48,7 @@ return [
     'list_create_success' => 'Reading list created!',
     'loading' => 'Loading',
     'login' => 'Login',
+    'login_with_facebook' => 'Login with facebook',
     'logout' => 'Logout',
     'more' => 'More',
     'more_tag' => ':count more',

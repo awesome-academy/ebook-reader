@@ -22,6 +22,7 @@ class User extends Authenticatable
         'login_name',
         'email',
         'password',
+        'avatar',
     ];
 
     protected $cascadeDeletes = [
