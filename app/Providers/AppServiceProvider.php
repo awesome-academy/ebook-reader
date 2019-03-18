@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(MetaRepository $meta)
     {
-        if (! (app()->runningInConsole() ||
+        if (! (Request::ajax() || (app()->runningInConsole() && !app()->runningUnitTests()) ||
             Route::is('login') || Route::is('register')
             && Route::is('admin/*') || Route::is('password/*') || Route::is('email/*')
         )) {
