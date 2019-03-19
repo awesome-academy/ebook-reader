@@ -36,6 +36,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/user/{user_name}', 'UserController@index')->name('user_about');
 Route::get('/user/{user_name}/activity', 'UserController@conversations')->name('user_conversations');
 Route::get('/user/{user_name}/following', 'UserController@following')->name('user_following');
+// social login
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('social_login');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::group(array('namespace' => 'Admin'), function () {
     Route::get('admin/users', 'UserController@index')->name('user');
